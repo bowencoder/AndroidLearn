@@ -1,0 +1,50 @@
+# ─── Gradle ───────────────────────────────────────────────
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ─── Android Studio / IntelliJ IDEA ──────────────────────
+*.iml
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+/.idea/caches/
+/.idea/libraries/
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# ─── Local config（不含密钥，不提交）──────────────────────
+local.properties
+keystore.properties
+
+# ─── macOS ────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ─── NDK / CMake ──────────────────────────────────────────
+.externalNativeBuild/
+.cxx/
+*.so
+
+# ─── 签名与密钥文件 ───────────────────────────────────────
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# ─── 测试覆盖率报告 ───────────────────────────────────────
+/captures/
+coverage.ec
+*.hprof
+
+# ─── 日志文件 ─────────────────────────────────────────────
+*.log
+
+# ─── 其他系统文件 ─────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
