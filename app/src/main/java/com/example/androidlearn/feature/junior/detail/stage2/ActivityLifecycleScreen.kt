@@ -1,4 +1,4 @@
-package com.example.androidlearn.feature.junior.detail.stage1
+package com.example.androidlearn.feature.junior.detail.stage2
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
 fun ActivityLifecycleScreen(onBack: () -> Unit) {
     TopicDetailScaffold(
         detail = detail,
-        stageColor = Color(0xFF4CAF50),
-        stageTitle = "语言与开发基础",
+        stageColor = Color(0xFF2196F3),
+        stageTitle = "四大组件",
         onBack = onBack
     )
 }

@@ -1,4 +1,4 @@
-package com.example.androidlearn.feature.junior.detail.stage1
+package com.example.androidlearn.feature.junior.detail.stage2
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
