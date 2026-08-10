@@ -1,0 +1,128 @@
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/HiltScreen.kt
+  s_f6c80752d4dea6::t_fcb5ae3a554b7d 3-5,85-97
+  s_2d56b9d2112e4f::t_3247e26f4e9676 7-83
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/ModularizationScreen.kt
+  s_f6c80752d4dea6::t_172464d817624a 3-5,76-88
+  s_2d56b9d2112e4f::t_8feeea205ad8f6 7-74
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/WorkManagerScreen.kt
+  s_f6c80752d4dea6::t_2975212f2222e2 3-5,98-111
+  s_2d56b9d2112e4f::t_0710798b3f654b 7-96
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/MvvmArchScreen.kt
+  s_2d56b9d2112e4f::t_68b19bd763fc13 7-67
+  s_f6c80752d4dea6::t_e20fd485962581 3-5,69-80
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/CameraXScreen.kt
+  s_f6c80752d4dea6::t_d625179fa8ba28 3-5,97-108
+  s_2d56b9d2112e4f::t_733aa023c23e90 7-95
+app/src/main/res/layout/item_note_chapter.xml
+  s_f6c80752d4dea6::t_269da5ed68eafb 1-52
+gradle/libs.versions.toml
+  s_f6c80752d4dea6::t_cbf6b6ee797a76 10-12
+  s_f6c80752d4dea6::t_1b2de747f6e13b 26-28
+app/src/main/java/com/example/androidlearn/MainActivity.kt
+  s_f6c80752d4dea6::t_7161aad3e7de5f 18,34,112,115,127
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/AidlMultiProcessScreen.kt
+  s_f6c80752d4dea6::t_1b3c74ce4cb32a 3-5,94-108
+  s_2d56b9d2112e4f::t_6b5903a7c2e007 7-92
+app/src/main/res/values/themes.xml
+  s_f6c80752d4dea6::t_81c1b20786ac71 5-13
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/AppWidgetScreen.kt
+  s_f6c80752d4dea6::t_ee5648a5a45676 3-5,93-106
+  s_2d56b9d2112e4f::t_56ccc1cc88a97d 7-91
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/NoteDetailActivity.kt
+  s_fed1b9202637be::t_defb0e9318db33 37-40
+  s_f6c80752d4dea6::t_2f54012a137e79 3-12,14-16,18-36,47-48,50-64,67-68,71-80,89,92-93,96-98,100-106,109-115,118-124,127-202,204-226,228-237
+  s_2e9964a025f605::t_8cd7f58211867b 13,84-85,87
+  s_fd74220447b8bc::t_f5fc0c291beacd 17,65-66,69-70,81-83,86,88,90-91,94-95
+  s_fed1b9202637be::t_92484cdc9e5aea 41-44
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/CoroutinesScreen.kt
+  s_2d56b9d2112e4f::t_df6cdd31c78f6a 7-73
+  s_f6c80752d4dea6::t_11000ec7e14033 3-5,75-86
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/ViewModelScreen.kt
+  s_2d56b9d2112e4f::t_a4e81c9ac65fd9 7-65
+  s_f6c80752d4dea6::t_0aba4db0f435dc 3-5,67-78
+app/src/main/res/drawable/bg_chapter_num.xml
+  s_f6c80752d4dea6::t_f252e2cb806b57 1-6
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/JetpackComposeScreen.kt
+  s_f6c80752d4dea6::t_008a79d7d04a77 3-5,88-103
+  s_2d56b9d2112e4f::t_70dc06ee62d131 7-86
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/UnitTestScreen.kt
+  s_f6c80752d4dea6::t_ed9c12454891e3 3-5,97-110
+  s_2d56b9d2112e4f::t_e3c9ff44970671 7-95
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/ExoPlayerScreen.kt
+  s_f6c80752d4dea6::t_c467e0d5f60d13 3-5,85-96
+  s_2d56b9d2112e4f::t_43ac0db217cf7f 7-83
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/NavigationComponentScreen.kt
+  s_f6c80752d4dea6::t_cdbdb14eecddbf 3-5,89-103
+  s_2d56b9d2112e4f::t_ae6ed79192165c 7-87
+app/build.gradle.kts
+  s_fd74220447b8bc::t_b1553d22965871 42
+  s_f6c80752d4dea6::t_3f5a3832822be3 58-60
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/CustomViewScreen.kt
+  s_2d56b9d2112e4f::t_0f54ce092a9f62 7-98
+  s_f6c80752d4dea6::t_b00703fe9d77fd 3-5,100-113
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/PerformanceScreen.kt
+  s_2d56b9d2112e4f::t_83f8c526cc69bf 7-93
+  s_f6c80752d4dea6::t_8013067dada7be 3-5,95-111
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/CiCdScreen.kt
+  s_2d56b9d2112e4f::t_b2cc1583ff193c 7-88
+  s_f6c80752d4dea6::t_4e0315604263ab 3-5,89,91-101
+app/src/main/res/layout/activity_note_detail.xml
+  s_2e9964a025f605::t_67fc22483b207b 19
+  s_f6c80752d4dea6::t_7f3ecab7a8dffb 1-18,20-52
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/ScreenAdaptBitmapScreen.kt
+  s_f6c80752d4dea6::t_1ec9e79df7425e 3-5,96-109
+  s_2d56b9d2112e4f::t_f0afe17f9f27da 7-94
+app/src/main/AndroidManifest.xml
+  s_f6c80752d4dea6::t_9d18fe73ad2fda 27-32
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage5/BluetoothWifiScreen.kt
+  s_f6c80752d4dea6::t_457e9478d95d9b 3-5,83-94
+  s_2d56b9d2112e4f::t_c59314fac23f99 7-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "e149c0dbb4c50c30cb089cbf64ca10139667a1a5",
+  "prompts": {},
+  "sessions": {
+    "s_2d56b9d2112e4f": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "e749e3e5-8775-4fca-9a16-ca9a854b7030",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_2e9964a025f605": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "cd998cb7-0aef-4b7e-80f4-f263e7f574dc",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_f6c80752d4dea6": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "28c60e25-c088-45ad-97b7-ae598cfc3902",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_fd74220447b8bc": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "e5144967-3179-4ed4-a670-740bef622d22",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_fed1b9202637be": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "38424c13-2b94-4b6c-ba34-e532612c4fc8",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
