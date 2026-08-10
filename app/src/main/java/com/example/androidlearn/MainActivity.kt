@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -30,7 +31,7 @@ import com.example.androidlearn.feature.junior.JuniorScreen
 import com.example.androidlearn.feature.intermediate.IntermediateScreen
 import com.example.androidlearn.feature.senior.SeniorScreen
 import com.example.androidlearn.feature.junior.detail.JuniorRouter
-import com.example.androidlearn.feature.intermediate.detail.IntermediateRouter
+import com.example.androidlearn.feature.intermediate.detail.NoteDetailActivity
 import com.example.androidlearn.feature.senior.detail.SeniorRouter
 import com.example.androidlearn.ui.theme.AndroidLearnTheme
 
@@ -108,9 +109,10 @@ fun MainApp() {
             }
             // ── 中级工程师 Tab ─────────────────────────────
             composable(BottomNavItem.Intermediate.route) {
+                val context = LocalContext.current
                 IntermediateScreen(
                     onTopicClick = { stageIndex, topicIndex ->
-                        navController.navigate("topic_detail/$stageIndex/$topicIndex")
+                        NoteDetailActivity.start(context, stageIndex, topicIndex)
                     }
                 )
             }
@@ -122,7 +124,7 @@ fun MainApp() {
                     }
                 )
             }
-            // ── 主题详情页（全局共用）─────────────────────
+            // ── 主题详情页（初级 / 高级共用）─────────────────────
             composable(
                 route = "topic_detail/{stageIndex}/{topicIndex}",
                 arguments = listOf(
@@ -134,7 +136,6 @@ fun MainApp() {
                 val topicIndex = backStackEntry.arguments?.getInt("topicIndex") ?: 0
                 when (stageIndex) {
                     0, 1, 2 -> JuniorRouter(stageIndex, topicIndex, onBack = { navController.popBackStack() })
-                    3, 4, 5, 6 -> IntermediateRouter(stageIndex, topicIndex) { navController.popBackStack() }
                     else -> SeniorRouter(stageIndex, topicIndex) { navController.popBackStack() }
                 }
             }

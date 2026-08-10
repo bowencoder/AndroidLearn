@@ -2,4 +2,13 @@
 <resources>
 
     <style name="Theme.AndroidLearn" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- 中级详情页 Activity 主题（AppCompat，支持 Toolbar） -->
+    <style name="Theme.AndroidLearn.NoteDetail" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#9C27B0</item>
+        <item name="colorPrimaryDark">#7B1FA2</item>
+        <item name="colorAccent">#9C27B0</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
 </resources>

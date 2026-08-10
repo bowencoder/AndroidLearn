@@ -1,54 +1,112 @@
 package com.example.androidlearn.feature.intermediate.detail.stage4
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import com.example.androidlearn.feature.shared.TopicDetail
-import com.example.androidlearn.feature.shared.TopicDetailScaffold
+import android.graphics.Color
+import com.example.androidlearn.feature.intermediate.detail.ChapterItem
+import com.example.androidlearn.feature.intermediate.detail.NoteData
 
-private val detail = TopicDetail(
-    title = "单元测试",
-    description = "JUnit、Mockito、Compose UI Test",
-    overview = "自动化测试保障代码质量，单元测试验证业务逻辑，UI 测试验证用户交互，是高质量代码的保障。",
-    keyPoints = listOf(
-        "JUnit 4/5：断言 assertEquals / assertTrue / assertThrows",
-        "Mockito / MockK：Mock 依赖，验证函数调用",
-        "ViewModel 测试：TestCoroutineDispatcher / UnconfinedTestDispatcher",
-        "Flow 测试：Turbine 库简化 Flow 断言",
-        "Compose UI Test：onNodeWithText().performClick()",
-        "测试覆盖率：Jacoco 生成报告，核心逻辑 > 80%"
-    ),
-    codeSnippet = """
-@Test
-fun `increment increases count by 1`() = runTest {
-    val viewModel = CounterViewModel()
-    viewModel.increment()
-    assertEquals(1, viewModel.count.value)
-}
+/*
+ * 单元测试与 UI 测试
+ * 官方文档：https://developer.android.com/training/testing
+ *
+ * ════════════════════════════════════════════════════════════════════════════
+ *  1  单元测试
+ * ════════════════════════════════════════════════════════════════════════════
+ *
+ * ── 1.1  JUnit ────────────────────────────────────────────────────────────────
+ *
+ *  · assertEquals / assertTrue / assertThrows：常用断言
+ *  · @Before / @After：测试前后执行
+ *  · @Test：标记测试方法
+ *
+ *  @Test
+ *  fun `increment increases count by 1`() = runTest {
+ *      val viewModel = CounterViewModel()
+ *      viewModel.increment()
+ *      assertEquals(1, viewModel.count.value)
+ *  }
+ *
+ * ── 1.2  MockK（推荐） ────────────────────────────────────────────────────────
+ *
+ *  · Kotlin 原生 Mock 框架，比 Mockito 更简洁
+ *  · mockk<T>()：创建 Mock 对象
+ *  · coEvery { }：Mock suspend 函数
+ *  · verify { }：验证函数调用
+ *
+ *  @Test
+ *  fun `loadUser calls repository`() = runTest {
+ *      val repo = mockk<UserRepository>()
+ *      coEvery { repo.getUser(1) } returns User(1, "Alice")
+ *
+ *      val vm = UserViewModel(repo)
+ *      vm.loadUser(1)
+ *      assertEquals("Alice", vm.uiState.value.user?.name)
+ *  }
+ *
+ *
+ * ════════════════════════════════════════════════════════════════════════════
+ *  2  协程测试
+ * ════════════════════════════════════════════════════════════════════════════
+ *
+ * ── 2.1  ViewModel 测试 ───────────────────────────────────────────────────────
+ *
+ *  · UnconfinedTestDispatcher：立即执行协程，不需要 advanceUntilIdle
+ *  · TestCoroutineScheduler：控制虚拟时间
+ *
+ *  @get:Rule
+ *  val mainDispatcherRule = MainDispatcherRule()
+ *
+ * ── 2.2  Flow 测试（Turbine） ─────────────────────────────────────────────────
+ *
+ *  · Turbine 库简化 Flow 断言
+ *
+ *  viewModel.uiState.test {
+ *      val initial = awaitItem()
+ *      assertEquals(false, initial.isLoading)
+ *      viewModel.load()
+ *      val loading = awaitItem()
+ *      assertEquals(true, loading.isLoading)
+ *  }
+ *
+ *
+ * ════════════════════════════════════════════════════════════════════════════
+ *  3  Compose UI 测试
+ * ════════════════════════════════════════════════════════════════════════════
+ *
+ *  · onNodeWithText("文字").performClick()：查找并点击
+ *  · onNodeWithTag("tag").assertIsDisplayed()：断言可见
+ *  · composeTestRule.setContent { }：设置测试内容
+ *
+ *
+ * ════════════════════════════════════════════════════════════════════════════
+ *  4  测试覆盖率
+ * ════════════════════════════════════════════════════════════════════════════
+ *
+ *  · Jacoco：生成覆盖率报告
+ *  · 核心业务逻辑覆盖率目标 > 80%
+ *
+ *
+ * ════════════════════════════════════════════════════════════════════════════
+ *  5  最佳实践
+ * ════════════════════════════════════════════════════════════════════════════
+ *
+ *  · 测试命名用 backtick `应该做什么当某条件时`，可读性强
+ *  · 优先用 MockK（Kotlin 原生），比 Mockito 更简洁
+ *  · 使用 Turbine 库测试 Flow：val item = awaitItem()
+ */
 
-// MockK 示例
-@Test
-fun `loadUser calls repository`() = runTest {
-    val repo = mockk<UserRepository>()
-    coEvery { repo.getUser(1) } returns User(1, "Alice")
-
-    val vm = UserViewModel(repo)
-    vm.loadUser(1)
-    assertEquals("Alice", vm.uiState.value.user?.name)
-}
-    """.trimIndent(),
-    tips = listOf(
-        "测试命名用 backtick `应该做什么当某条件时`，可读性强",
-        "优先用 MockK（Kotlin 原生），比 Mockito 更简洁",
-        "使用 Turbine 库测试 Flow：val item = awaitItem()"
+val unitTestData = NoteData(
+    title = "单元测试与 UI 测试",
+    subtitle = "进阶开发能力 · JUnit · MockK · Compose UI Test",
+    color = Color.parseColor("#FF9800"),
+    chapters = listOf(
+        ChapterItem("1",   "单元测试"),
+        ChapterItem("1.1", "JUnit"),
+        ChapterItem("1.2", "MockK（推荐）"),
+        ChapterItem("2",   "协程测试"),
+        ChapterItem("2.1", "ViewModel 测试"),
+        ChapterItem("2.2", "Flow 测试（Turbine）"),
+        ChapterItem("3",   "Compose UI 测试"),
+        ChapterItem("4",   "测试覆盖率"),
+        ChapterItem("5",   "最佳实践"),
     )
 )
-
-@Composable
-fun UnitTestScreen(onBack: () -> Unit) {
-    TopicDetailScaffold(
-        detail = detail,
-        stageColor = Color(0xFFFF9800),
-        stageTitle = "进阶开发能力",
-        onBack = onBack
-    )
-}
