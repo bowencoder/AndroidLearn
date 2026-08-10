@@ -1,0 +1,159 @@
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/ActivityLifecycleScreen.kt
+  s_637adfcce99461::t_55a226f77d5a06 9,11,70-148,167,174-175,184-190,199-200
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/FragmentScreen.kt
+  s_2e7cc13194d298::t_4e1878afcdebef 1-162
+app/src/main/AndroidManifest.xml
+  s_64ec53c8a05ce0::t_b5010bef8221ac 6
+app/build.gradle.kts
+  s_27d35d84c49000::t_6104354c16fb52 4,67-74
+  s_51bbfab80dab25::t_41d0b7ca01df06 65-66
+app/src/main/java/com/example/androidlearn/feature/junior/detail/JuniorRouter.kt
+  s_7d49c961c2cedb::t_6653b7d21bf91f 64-72
+  s_7d49c961c2cedb::t_ea6cb431910d7c 13
+  s_44ae3d8ae7e83d::t_073ab8b1b2454c 29
+  s_466c26eae16f3e::t_b7731bdc316532 14-15,17,20
+  s_466c26eae16f3e::t_8e67ccdf953612 58-60
+  s_466c26eae16f3e::t_c3c70da0dfcf10 32
+  s_7d49c961c2cedb::t_eb3abb117b5c82 35-37
+  s_44ae3d8ae7e83d::t_4168c20928e2b1 53
+app/src/main/java/com/example/androidlearn/feature/junior/JuniorScreen.kt
+  s_637adfcce99461::t_b69ecca98a1fec 80
+  s_7d49c961c2cedb::t_ae20c9fb4849ff 89,97
+  s_466c26eae16f3e::t_3429674232119c 77,92-95
+app/src/main/java/com/example/androidlearn/AndroidLearnApplication.kt
+  s_64ec53c8a05ce0::t_432c3f210fc42f 1-12
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/BroadcastScreen.kt
+  s_71504816bb2282::t_cff214f211ef9a 16-17,26-27,30-37,40,44-50,54-57,60,64,67-73,76-79,83-91,94,96-98,100-134,137-153,160-165,175
+app/src/main/java/com/example/androidlearn/feature/shared/NoteDetailScaffold.kt
+  s_edebf6c4b612ff::t_c08ccebc21a2d3 40-41,124-125,138,142,146-151,156,161,163,169-173
+gradle/libs.versions.toml
+  s_27d35d84c49000::t_c6e1bcd708b06d 13-15,36-43
+  s_27d35d84c49000::t_9ccbafa35640fe 48
+  s_51bbfab80dab25::t_78bd9f7a5692cb 12,34-35
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/DataStorageScreen.kt
+  s_890e065c7a9bd0::t_8031979ed64734 29
+  s_890e065c7a9bd0::t_425639438c42b2 143
+  s_890e065c7a9bd0::t_7220c3ec35d1ad 14,17
+  s_890e065c7a9bd0::t_8198ade941cf8f 321
+  s_890e065c7a9bd0::t_d8b44cccdf6512 273
+  s_890e065c7a9bd0::t_5f043a7c0064ba 168
+  s_890e065c7a9bd0::t_99820d1fdd6615 264
+  s_890e065c7a9bd0::t_f06bba0f632c34 378
+  s_890e065c7a9bd0::t_04a82dbc4a628a 196
+  s_890e065c7a9bd0::t_ac16734246798c 436
+  s_890e065c7a9bd0::t_12d1509e8ebf36 108
+  s_890e065c7a9bd0::t_bffa98218ce7e9 297,300
+  s_edebf6c4b612ff::t_09d39d8f256d9f 476-499
+  s_890e065c7a9bd0::t_0a1142cb13a735 225,228
+  s_890e065c7a9bd0::t_047aa13aea4cf6 352
+  s_7d49c961c2cedb::t_d68a3a2ae5b38f 1-13,15-16,18-28,30-64,66-107,109-142,144-167,169-195,197-224,226-227,229-263,265-272,274-296,298-299,301-320,322-351,353-377,379-417,419-435,437-453,455-475,500-515
+  s_890e065c7a9bd0::t_763b9a13c17cd1 418
+  s_890e065c7a9bd0::t_536db6fa53875b 454
+  s_890e065c7a9bd0::t_c2f902217c3739 65
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/AndroidArchScreen.kt
+  s_9c33319538ea6c::t_a6180cab2a32ea 9-259
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "998aad84f8d06dcdff092be37e90625b0969e2c8",
+  "prompts": {},
+  "sessions": {
+    "s_27d35d84c49000": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "e2ec1d2c-38b0-46f8-aeb5-45b22c71d8d6",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_2e7cc13194d298": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "a409a96b-e07b-483c-8401-25834f40ab2a",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_44ae3d8ae7e83d": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "7717c303-74ce-4d39-9033-10312f5f21fd",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_466c26eae16f3e": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "b7060c8d-013d-4606-aaa5-0ed7a88ef605",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_51bbfab80dab25": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "afb9a7fb-b327-495d-95a0-77decd1275b5",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_637adfcce99461": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "47e8ef30-7592-4ae1-81f0-7ad14938a649",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_64ec53c8a05ce0": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "10c65f05-ab17-4b15-b572-ec51b4e26a72",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_71504816bb2282": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "58cceb8c-73cd-485f-a785-d67d44f96b1f",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_7d49c961c2cedb": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "d942b252-5760-47b8-9239-87ce382ee798",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_890e065c7a9bd0": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "046aaa78-91bf-43b1-b869-1917673932c9",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_9c33319538ea6c": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "04fce10b-202b-43fa-806c-2229745cda6c",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_edebf6c4b612ff": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "56e45888-f7a3-4e30-8b3a-0e96b3454d1e",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
