@@ -68,39 +68,37 @@ val juniorRoadmap = listOf(
             LearningTopic("Kotlin 基础语法", "变量/函数/类、Lambda、空安全、扩展函数、数据类、高阶函数"),
             LearningTopic("Android Studio 工具链", "项目结构、Logcat、调试器、模拟器、布局编辑器、快捷键"),
             LearningTopic("Git / Gradle / ADB", "Git 版本控制基础、Gradle 构建脚本解读、ADB 常用调试命令"),
-            LearningTopic("Intent 与页面跳转", "显式/隐式 Intent、数据传递、ActivityResultLauncher、任务栈"),
             LearningTopic("资源管理基础", "strings/colors/dimens 资源、多语言/多屏幕适配、VectorDrawable"),
         )
     ),
     LearningStage(
         index = 1,
         title = "四大组件",
-        subtitle = "Activity · Fragment · Service · Broadcast · ContentProvider · 权限",
+        subtitle = "Activity · Service · Broadcast · ContentProvider",
         color = Color(0xFF2196F3),
         topics = listOf(
-            LearningTopic("Activity 与生命周期", "onCreate/onResume/onPause、启动模式、配置变更、状态保存"),
-            LearningTopic("Fragment", "生命周期、FragmentManager、回退栈、Fragment 间通信、ViewPager2"),
-            LearningTopic("弹窗", "AlertDialog、DialogFragment、BottomSheetDialog、PopupWindow、Snackbar"),
+            LearningTopic("Activity 与 Intent", "生命周期、启动模式、显式/隐式 Intent、数据传递、ActivityResultLauncher、Deep Link"),
             LearningTopic("Service 与后台处理", "前台/后台 Service、IntentService、生命周期、bindService"),
             LearningTopic("BroadcastReceiver", "静态/动态注册、有序广播、LocalBroadcastManager、系统广播"),
             LearningTopic("ContentProvider 数据共享", "URI 设计、增删改查、FileProvider、跨进程数据访问"),
-            LearningTopic("常用 UI 控件与布局", "TextView/Button/ImageView、ConstraintLayout、ViewBinding"),
-            LearningTopic("权限申请基础", "Manifest 权限声明、运行时权限请求、ActivityResultContracts"),
         )
     ),
     LearningStage(
         index = 2,
         title = "UI 组件与数据基础",
-        subtitle = "RecyclerView · Room · 网络 · 图片加载 · DataStore",
+        subtitle = "Fragment · 布局 · 弹窗 · 权限 · RecyclerView · 数据存储 · 网络 · 图片 · 多媒体 · 架构入口",
         color = Color(0xFF009688),
         topics = listOf(
+            LearningTopic("Fragment", "生命周期、FragmentManager、回退栈、Fragment 间通信、ViewPager2"),
+            LearningTopic("布局与 View", "ConstraintLayout、RecyclerView、ViewBinding、常用控件、自定义 View"),
+            LearningTopic("弹窗", "AlertDialog、DialogFragment、BottomSheetDialog、PopupWindow、Snackbar"),
+            LearningTopic("权限申请基础", "普通/危险/特殊权限、运行时申请、ActivityResultContracts、永久拒绝"),
             LearningTopic("RecyclerView 高效列表", "Adapter/ViewHolder、DiffUtil、ListAdapter、ViewPager2、ItemDecoration"),
-            LearningTopic("Room 数据库", "Entity/DAO/Database、Flow 查询、Migration、关联查询"),
-            LearningTopic("SharedPreferences", "键值对存储、apply/commit、监听变化、EncryptedSharedPreferences"),
+            LearningTopic("数据存储", "Room 数据库、SharedPreferences、DataStore、EncryptedSharedPreferences、存储方案选型"),
             LearningTopic("网络请求基础", "HTTP 协议、Retrofit + OkHttp、Gson/Moshi 解析、错误处理"),
             LearningTopic("图片加载 Glide/Coil", "基础 API、占位图、圆角/变换、缓存策略、Compose 集成"),
-            LearningTopic("DataStore 数据持久化", "Preferences DataStore 替代 SharedPreferences、Proto DataStore"),
             LearningTopic("文件与多媒体基础", "文件读写、MediaPlayer 播放、相机拍照、MediaStore 访问媒体库"),
+            LearningTopic("Android 架构入口", "Application · Navigation · 底部导航 · 对应 iOS AppDelegate/NavigationVC/TabBarVC"),
         )
     )
 )

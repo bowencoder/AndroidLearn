@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -61,6 +62,16 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
+    // 图片库 - Glide
+    implementation(libs.glide.compose)
+    // 网络库 - OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    // 网络库 - Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    // JSON 解析 - kotlinx.serialization
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,4 +1,4 @@
-package com.example.androidlearn.feature.junior.detail.stage2
+package com.example.androidlearn.feature.junior.detail.stage3
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -17,68 +17,47 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  *  危险权限（Dangerous）：
  *  · 涉及用户隐私，Android 6.0（API 23）起必须运行时申请
- *  · 分组：同一组中一个被授权，同组其他权限自动授予（Android 8+ 不再保证）
- *  · 常见：CAMERA、RECORD_AUDIO、READ_CONTACTS、ACCESS_FINE_LOCATION、
- *           READ_EXTERNAL_STORAGE、CALL_PHONE
+ *  · 常见：CAMERA、RECORD_AUDIO、READ_CONTACTS、ACCESS_FINE_LOCATION、CALL_PHONE
  *
  *  特殊权限（Special）：
  *  · 需跳转系统设置页由用户手动开启
- *  · MANAGE_EXTERNAL_STORAGE：访问所有文件（Android 11+）
- *  · SYSTEM_ALERT_WINDOW：悬浮窗
- *  · WRITE_SETTINGS：修改系统设置
+ *  · MANAGE_EXTERNAL_STORAGE（Android 11+）、SYSTEM_ALERT_WINDOW、WRITE_SETTINGS
  *
  *  // AndroidManifest.xml 声明（所有权限都需要声明）
  *  <uses-permission android:name="android.permission.CAMERA" />
- *  <uses-permission android:name="android.permission.INTERNET" />
  *
  *
  * ── 2  运行时权限申请（传统方式）─────────────────────────────────────────────
  *
- *  // 检查权限
  *  val granted = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
  *      PackageManager.PERMISSION_GRANTED
  *
- *  // 申请权限
- *  ActivityCompat.requestPermissions(
- *      this,
- *      arrayOf(Manifest.permission.CAMERA),
- *      REQUEST_CODE_CAMERA
- *  )
+ *  ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CODE)
  *
- *  // 处理结果
- *  override fun onRequestPermissionsResult(
- *      requestCode: Int, permissions: Array<String>, grantResults: IntArray
- *  ) {
+ *  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
  *      super.onRequestPermissionsResult(requestCode, permissions, grantResults)
- *      if (requestCode == REQUEST_CODE_CAMERA) {
- *          if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
- *              openCamera()
- *          } else {
- *              showDeniedMessage()
- *          }
+ *      if (requestCode == REQUEST_CODE) {
+ *          if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) openCamera()
+ *          else showDeniedMessage()
  *      }
  *  }
  *
  *
  * ── 3  ActivityResultContracts（推荐现代方式）──────────────────────────────────
  *
- *  // 单个权限（Activity / Fragment 中）
+ *  // 单个权限
  *  private val cameraLauncher = registerForActivityResult(
  *      ActivityResultContracts.RequestPermission()
  *  ) { isGranted ->
  *      if (isGranted) openCamera() else showDeniedMessage()
  *  }
  *
- *  // 触发申请
  *  fun requestCamera() {
  *      val permission = Manifest.permission.CAMERA
  *      when {
- *          ContextCompat.checkSelfPermission(this, permission) == PERMISSION_GRANTED ->
- *              openCamera()
- *          shouldShowRequestPermissionRationale(permission) ->
- *              showRationaleDialog()   // 向用户解释为何需要权限
- *          else ->
- *              cameraLauncher.launch(permission)
+ *          ContextCompat.checkSelfPermission(this, permission) == PERMISSION_GRANTED -> openCamera()
+ *          shouldShowRequestPermissionRationale(permission) -> showRationaleDialog()
+ *          else -> cameraLauncher.launch(permission)
  *      }
  *  }
  *
@@ -94,7 +73,6 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  * ── 4  Compose 中申请权限 ─────────────────────────────────────────────────────
  *
- *  // 单个权限
  *  val launcher = rememberLauncherForActivityResult(
  *      ActivityResultContracts.RequestPermission()
  *  ) { isGranted ->
@@ -111,7 +89,6 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  }) { Text("打开相机") }
  *
  *  // 推荐使用 Accompanist Permissions 库（更简洁）
- *  // implementation "com.google.accompanist:accompanist-permissions:x.x.x"
  *  val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
  *  if (cameraPermissionState.status.isGranted) {
  *      CameraContent()
@@ -138,8 +115,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *              }
  *              startActivity(intent)
  *          }
- *          .setNegativeButton("取消", null)
- *          .show()
+ *          .setNegativeButton("取消", null).show()
  *  }
  *
  *
@@ -147,18 +123,16 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  *  // MANAGE_EXTERNAL_STORAGE（Android 11+，访问所有文件）
  *  if (!Environment.isExternalStorageManager()) {
- *      val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
+ *      startActivity(Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
  *          data = Uri.fromParts("package", packageName, null)
- *      }
- *      startActivity(intent)
+ *      })
  *  }
  *
  *  // SYSTEM_ALERT_WINDOW（悬浮窗）
  *  if (!Settings.canDrawOverlays(this)) {
- *      val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+ *      startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
  *          data = Uri.fromParts("package", packageName, null)
- *      }
- *      startActivity(intent)
+ *      })
  *  }
  *
  *
@@ -182,7 +156,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · 使用 ActivityResultContracts 替代 onRequestPermissionsResult（已废弃）
  */
 
-private val Blue = Color(0xFF2196F3)
+private val Teal = Color(0xFF009688)
 
 private val chapters = listOf(
     NoteChapter("1", "权限分类"),
@@ -203,7 +177,7 @@ fun PermissionScreen(
     NoteDetailScaffold(
         title = "权限申请基础",
         subtitle = "普通/危险/特殊权限 · 运行时申请 · 永久拒绝",
-        color = Blue,
+        color = Teal,
         chapters = chapters,
         onBack = onBack,
         onChapterClick = onChapterClick

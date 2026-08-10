@@ -1,4 +1,4 @@
-package com.example.androidlearn.feature.junior.detail.stage2
+package com.example.androidlearn.feature.junior.detail.stage3
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -134,7 +134,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · 使用 by viewModels() / by activityViewModels() 委托创建 ViewModel
  */
 
-private val Blue = Color(0xFF2196F3)
+private val Teal = Color(0xFF009688)
 
 private val chapters = listOf(
     NoteChapter("1", "Fragment 生命周期"),
@@ -154,7 +154,7 @@ fun FragmentScreen(
     NoteDetailScaffold(
         title = "Fragment",
         subtitle = "生命周期 · 事务 · 回退栈 · 通信",
-        color = Blue,
+        color = Teal,
         chapters = chapters,
         onBack = onBack,
         onChapterClick = onChapterClick

@@ -37,7 +37,8 @@ import androidx.compose.ui.unit.sp
 /**
  * 笔记详情页通用章节数据模型。
  *
- * @param num   章节编号，如 "1"、"2"
+ * @param num   章节编号，如 "1"、"1.1"、"1.2"
+ *              一级概念用整数（"1"、"2"、"3"），二级用小数（"1.1"、"1.2"）
  * @param title 章节标题
  */
 data class NoteChapter(val num: String, val title: String)
@@ -120,6 +121,8 @@ fun NoteDetailScaffold(
 /**
  * 笔记详情页通用章节行组件。
  * 左侧显示带主题色背景的章节编号徽章，右侧显示章节标题。
+ * 编号为整数（"1"、"2"）时视为一级概念，字体加粗；
+ * 编号含小数点（"1.1"、"1.2"）时视为二级概念，字体正常。
  *
  * @param chapter 章节数据
  * @param color   主题色（编号徽章背景色 & 文字色）
@@ -132,33 +135,42 @@ fun NoteChapterRow(
     color: Color,
     onClick: () -> Unit = {}
 ) {
+    val isTopLevel = !chapter.num.contains('.')
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp),
+        elevation = CardDefaults.cardElevation(if (isTopLevel) 2.dp else 1.dp),
         onClick = onClick
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
+            modifier = Modifier.padding(
+                start = if (isTopLevel) 14.dp else 26.dp,
+                end = 14.dp,
+                top = if (isTopLevel) 13.dp else 10.dp,
+                bottom = if (isTopLevel) 13.dp else 10.dp
+            ),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Surface(
                 shape = RoundedCornerShape(6.dp),
-                color = color.copy(alpha = 0.12f)
+                color = color.copy(alpha = if (isTopLevel) 0.18f else 0.08f)
             ) {
                 Text(
                     text = chapter.num,
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
+                    fontSize = if (isTopLevel) 12.sp else 10.sp,
                     fontWeight = FontWeight.Bold,
-                    color = color
+                    color = color.copy(alpha = if (isTopLevel) 1f else 0.75f)
                 )
             }
             Spacer(Modifier.width(12.dp))
             Text(
                 text = chapter.title,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium
+                fontSize = if (isTopLevel) 15.sp else 13.sp,
+                fontWeight = if (isTopLevel) FontWeight.Bold else FontWeight.Normal,
+                color = MaterialTheme.colorScheme.onSurface.copy(
+                    alpha = if (isTopLevel) 1f else 0.85f
+                )
             )
         }
     }

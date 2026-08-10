@@ -1,4 +1,4 @@
-package com.example.androidlearn.feature.junior.detail.stage2
+package com.example.androidlearn.feature.junior.detail.stage3
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -12,36 +12,29 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  * ── 1  常用布局容器 ───────────────────────────────────────────────────────────
  *
  *  LinearLayout：线性排列（水平/垂直），weight 按比例分配剩余空间
- *  <LinearLayout
- *      android:orientation="horizontal"
- *      android:layout_width="match_parent"
- *      android:layout_height="wrap_content">
+ *  <LinearLayout android:orientation="horizontal" ...>
  *      <TextView android:layout_weight="1" ... />
  *      <Button  android:layout_weight="1" ... />
  *  </LinearLayout>
  *
  *  FrameLayout：层叠布局，子 View 默认左上角叠放；常用于 Fragment 容器
- *  <FrameLayout android:id="@+id/container" ... />
- *
  *  RelativeLayout：相对定位，已被 ConstraintLayout 取代，不推荐新项目使用
  *
  *
  * ── 2  ConstraintLayout（推荐首选）────────────────────────────────────────────
  *
  *  · 扁平化布局，一层解决大多数场景，性能优于多层嵌套
- *  · 约束方向：Start/End/Top/Bottom，必须在水平和垂直方向各有至少一个约束
+ *  · 约束方向：Start/End/Top/Bottom，水平和垂直方向各需至少一个约束
  *
  *  <androidx.constraintlayout.widget.ConstraintLayout>
  *      <TextView
  *          android:id="@+id/tvTitle"
  *          app:layout_constraintTop_toTopOf="parent"
- *          app:layout_constraintStart_toStartOf="parent"
- *          android:text="标题" />
+ *          app:layout_constraintStart_toStartOf="parent" />
  *      <Button
  *          android:id="@+id/btnOk"
  *          app:layout_constraintTop_toBottomOf="@id/tvTitle"
- *          app:layout_constraintEnd_toEndOf="parent"
- *          android:text="确认" />
+ *          app:layout_constraintEnd_toEndOf="parent" />
  *  </androidx.constraintlayout.widget.ConstraintLayout>
  *
  *  · Guideline：辅助线，按百分比或固定距离划分区域
@@ -54,25 +47,19 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  *  · 高性能列表，替代 ListView；通过 ViewHolder 复用 View
  *
- *  // Adapter
  *  class MyAdapter(private val items: List<String>) :
  *      RecyclerView.Adapter<MyAdapter.VH>() {
- *
  *      class VH(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root)
- *
  *      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
  *          val binding = ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
  *          return VH(binding)
  *      }
- *
  *      override fun onBindViewHolder(holder: VH, position: Int) {
  *          holder.binding.tvName.text = items[position]
  *      }
- *
  *      override fun getItemCount() = items.size
  *  }
  *
- *  // 设置
  *  recyclerView.layoutManager = LinearLayoutManager(this)
  *  recyclerView.adapter = MyAdapter(dataList)
  *
@@ -86,9 +73,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · 类型安全地访问 View，替代 findViewById，编译期检查，不会 NPE
  *
  *  // build.gradle.kts 开启
- *  android {
- *      buildFeatures { viewBinding = true }
- *  }
+ *  android { buildFeatures { viewBinding = true } }
  *
  *  // Activity 中使用
  *  private lateinit var binding: ActivityMainBinding
@@ -97,7 +82,6 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *      binding = ActivityMainBinding.inflate(layoutInflater)
  *      setContentView(binding.root)
  *      binding.tvTitle.text = "Hello"
- *      binding.btnOk.setOnClickListener { /* ... */ }
  *  }
  *
  *  // Fragment 中使用（注意在 onDestroyView 置 null）
@@ -133,21 +117,15 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  * ── 6  自定义 View ────────────────────────────────────────────────────────────
  *
  *  class CircleView @JvmOverloads constructor(
- *      context: Context,
- *      attrs: AttributeSet? = null,
- *      defStyleAttr: Int = 0
+ *      context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
  *  ) : View(context, attrs, defStyleAttr) {
- *
  *      private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
- *          color = Color.BLUE
- *          style = Paint.Style.FILL
+ *          color = Color.BLUE; style = Paint.Style.FILL
  *      }
- *
  *      override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
  *          val size = resolveSize(200, widthMeasureSpec)
  *          setMeasuredDimension(size, size)
  *      }
- *
  *      override fun onDraw(canvas: Canvas) {
  *          val cx = width / 2f
  *          canvas.drawCircle(cx, cx, cx, paint)
@@ -170,7 +148,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · 新项目考虑直接用 Jetpack Compose，彻底告别 XML 布局
  */
 
-private val Green = Color(0xFF4CAF50)
+private val Teal = Color(0xFF009688)
 
 private val chapters = listOf(
     NoteChapter("1", "常用布局容器"),
@@ -190,7 +168,7 @@ fun LayoutViewScreen(
     NoteDetailScaffold(
         title = "布局与 View",
         subtitle = "ConstraintLayout · RecyclerView · ViewBinding",
-        color = Green,
+        color = Teal,
         chapters = chapters,
         onBack = onBack,
         onChapterClick = onChapterClick
