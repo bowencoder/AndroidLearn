@@ -10,6 +10,8 @@ import com.example.androidlearn.feature.junior.detail.stage1.ResourceManagementS
 import com.example.androidlearn.feature.junior.detail.stage2.ActivityLifecycleScreen
 import com.example.androidlearn.feature.junior.detail.stage2.BroadcastScreen
 import com.example.androidlearn.feature.junior.detail.stage2.ContentProviderScreen
+import com.example.androidlearn.feature.junior.detail.stage2.DialogScreen
+import com.example.androidlearn.feature.junior.detail.stage2.FragmentScreen
 import com.example.androidlearn.feature.junior.detail.stage2.LayoutViewScreen
 import com.example.androidlearn.feature.junior.detail.stage2.PermissionScreen
 import com.example.androidlearn.feature.junior.detail.stage2.ServiceScreen
@@ -19,6 +21,7 @@ import com.example.androidlearn.feature.junior.detail.stage3.MediaBasicsScreen
 import com.example.androidlearn.feature.junior.detail.stage3.NetworkRequestScreen
 import com.example.androidlearn.feature.junior.detail.stage3.RecyclerViewScreen
 import com.example.androidlearn.feature.junior.detail.stage3.RoomDatabaseScreen
+import com.example.androidlearn.feature.junior.detail.stage3.SharedPreferencesScreen
 
 /**
  * 初级工程师 Tab 路由（stageIndex 0, 1, 2）
@@ -28,12 +31,14 @@ import com.example.androidlearn.feature.junior.detail.stage3.RoomDatabaseScreen
  *    3=DevTools    4=IntentNavigation  5=ResourceManagement
  *
  *  Stage 1（四大组件）→ stage2/:
- *    0=ActivityLifecycle  1=Service  2=Broadcast
- *    3=ContentProvider    4=LayoutView  5=Permission
+ *    0=ActivityLifecycle  1=Fragment   2=Dialog
+ *    3=Service            4=Broadcast  5=ContentProvider
+ *    6=LayoutView         7=Permission
  *
  *  Stage 2（UI 组件与数据基础）→ stage3/:
- *    0=RecyclerView  1=RoomDatabase  2=NetworkRequest
- *    3=ImageLoading  4=DataStore     5=MediaBasics
+ *    0=RecyclerView  1=RoomDatabase      2=SharedPreferences
+ *    3=DataStore     4=NetworkRequest    5=ImageLoading
+ *    6=MediaBasics
  */
 @Composable
 fun JuniorRouter(stageIndex: Int, topicIndex: Int, onBack: () -> Unit) {
@@ -50,20 +55,23 @@ fun JuniorRouter(stageIndex: Int, topicIndex: Int, onBack: () -> Unit) {
         // ── Stage 1 : 四大组件 ────────────────────────────────
         1 -> when (topicIndex) {
             0 -> ActivityLifecycleScreen(onBack)
-            1 -> ServiceScreen(onBack)
-            2 -> BroadcastScreen(onBack)
-            3 -> ContentProviderScreen(onBack)
-            4 -> LayoutViewScreen(onBack)
-            5 -> PermissionScreen(onBack)
+            1 -> FragmentScreen(onBack)
+            2 -> DialogScreen(onBack)
+            3 -> ServiceScreen(onBack)
+            4 -> BroadcastScreen(onBack)
+            5 -> ContentProviderScreen(onBack)
+            6 -> LayoutViewScreen(onBack)
+            7 -> PermissionScreen(onBack)
         }
         // ── Stage 2 : UI 组件与数据基础 ───────────────────────
         2 -> when (topicIndex) {
             0 -> RecyclerViewScreen(onBack)
             1 -> RoomDatabaseScreen(onBack)
-            2 -> NetworkRequestScreen(onBack)
-            3 -> ImageLoadingScreen(onBack)
-            4 -> DataStoreScreen(onBack)
-            5 -> MediaBasicsScreen(onBack)
+            2 -> SharedPreferencesScreen(onBack)
+            3 -> DataStoreScreen(onBack)
+            4 -> NetworkRequestScreen(onBack)
+            5 -> ImageLoadingScreen(onBack)
+            6 -> MediaBasicsScreen(onBack)
         }
     }
 }

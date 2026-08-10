@@ -75,10 +75,12 @@ val juniorRoadmap = listOf(
     LearningStage(
         index = 1,
         title = "四大组件",
-        subtitle = "Activity · Service · Broadcast · ContentProvider · 权限",
+        subtitle = "Activity · Fragment · Service · Broadcast · ContentProvider · 权限",
         color = Color(0xFF2196F3),
         topics = listOf(
             LearningTopic("Activity 与生命周期", "onCreate/onResume/onPause、启动模式、配置变更、状态保存"),
+            LearningTopic("Fragment", "生命周期、FragmentManager、回退栈、Fragment 间通信、ViewPager2"),
+            LearningTopic("弹窗", "AlertDialog、DialogFragment、BottomSheetDialog、PopupWindow、Snackbar"),
             LearningTopic("Service 与后台处理", "前台/后台 Service、IntentService、生命周期、bindService"),
             LearningTopic("BroadcastReceiver", "静态/动态注册、有序广播、LocalBroadcastManager、系统广播"),
             LearningTopic("ContentProvider 数据共享", "URI 设计、增删改查、FileProvider、跨进程数据访问"),
@@ -94,6 +96,7 @@ val juniorRoadmap = listOf(
         topics = listOf(
             LearningTopic("RecyclerView 高效列表", "Adapter/ViewHolder、DiffUtil、ListAdapter、ViewPager2、ItemDecoration"),
             LearningTopic("Room 数据库", "Entity/DAO/Database、Flow 查询、Migration、关联查询"),
+            LearningTopic("SharedPreferences", "键值对存储、apply/commit、监听变化、EncryptedSharedPreferences"),
             LearningTopic("网络请求基础", "HTTP 协议、Retrofit + OkHttp、Gson/Moshi 解析、错误处理"),
             LearningTopic("图片加载 Glide/Coil", "基础 API、占位图、圆角/变换、缓存策略、Compose 集成"),
             LearningTopic("DataStore 数据持久化", "Preferences DataStore 替代 SharedPreferences、Proto DataStore"),
