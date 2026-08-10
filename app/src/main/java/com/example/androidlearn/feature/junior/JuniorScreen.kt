@@ -92,13 +92,13 @@ val juniorRoadmap = listOf(
             LearningTopic("Fragment", "生命周期、FragmentManager、回退栈、Fragment 间通信、ViewPager2"),
             LearningTopic("布局与 View", "ConstraintLayout、RecyclerView、ViewBinding、常用控件、自定义 View"),
             LearningTopic("弹窗", "AlertDialog、DialogFragment、BottomSheetDialog、PopupWindow、Snackbar"),
-            LearningTopic("权限申请基础", "普通/危险/特殊权限、运行时申请、ActivityResultContracts、永久拒绝"),
             LearningTopic("RecyclerView 高效列表", "Adapter/ViewHolder、DiffUtil、ListAdapter、ViewPager2、ItemDecoration"),
             LearningTopic("数据存储", "Room 数据库、SharedPreferences、DataStore、EncryptedSharedPreferences、存储方案选型"),
             LearningTopic("网络请求基础", "HTTP 协议、Retrofit + OkHttp、Gson/Moshi 解析、错误处理"),
             LearningTopic("图片加载 Glide/Coil", "基础 API、占位图、圆角/变换、缓存策略、Compose 集成"),
             LearningTopic("文件与多媒体基础", "文件读写、MediaPlayer 播放、相机拍照、MediaStore 访问媒体库"),
             LearningTopic("Android 架构入口", "Application · Navigation · 底部导航 · 对应 iOS AppDelegate/NavigationVC/TabBarVC"),
+            LearningTopic("权限申请基础", "普通/危险/特殊权限、运行时申请、ActivityResultContracts、永久拒绝"),
         )
     )
 )
