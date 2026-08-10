@@ -1,0 +1,121 @@
+app/src/main/java/com/example/androidlearn/feature/junior/detail/JuniorRouter.kt
+  s_9d60ba4b8fd50d::t_f7bd5089f625f5 25,45-50,54-59,63-70,74-80
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/SharedPreferencesScreen.kt
+  s_9d60ba4b8fd50d::t_cfdea530ff8bb4 195-198,204-205
+  s_1c2b8b409a1a23::t_335962a6f38d7e 5-6,185-191,199-203,206
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/PermissionScreen.kt
+  s_9d60ba4b8fd50d::t_34a39f0546759b 199-202,208-209
+  s_1c2b8b409a1a23::t_f393392ca7f822 5-6,188-195,203-207,210
+app/src/main/java/com/example/androidlearn/MainActivity.kt
+  s_3180f087eeead0::t_cb21661fa9b4f8 136
+app/src/main/java/com/example/androidlearn/feature/shared/NoteDetailScaffold.kt
+  s_00a8604db7f68e::t_3782938ba1c993 128
+  s_00a8604db7f68e::t_4bf46162e82b36 50-55,64-65,109-113,126,130-134,138-139
+  s_1c2b8b409a1a23::t_a94f85ce634550 1-49,56-63,66-108,114-125,127,129,135-137,140-165
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/RoomDatabaseScreen.kt
+  s_1c2b8b409a1a23::t_c42bcb979f72d9 249-256,264-268,271
+  s_1c2b8b409a1a23::t_c7bd0097b56a07 5-6
+  s_9d60ba4b8fd50d::t_1007259a0f15aa 260-263,269-270
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/DataStoreScreen.kt
+  s_1c2b8b409a1a23::t_58a72bbdcad68d 5-6,211-217,225-229,232
+  s_9d60ba4b8fd50d::t_bd79facbc5a56e 221-224,230-231
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/BroadcastScreen.kt
+  s_1c2b8b409a1a23::t_c3da25550b8952 5-6,81-84,92-96,99
+  s_9d60ba4b8fd50d::t_530d661d248ec6 88-91,97-98
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/KotlinSyntaxScreen.kt
+  s_9d60ba4b8fd50d::t_1a18613478467e 486-489,495-496
+  s_2aa36abc3bf409::t_76466d266b14ec 5-6,465-482,490-494,497
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/RecyclerViewScreen.kt
+  s_1c2b8b409a1a23::t_5f4016ce21849a 5-6,200-207,215-219,222
+  s_9d60ba4b8fd50d::t_e8db9e69d6aa2a 211-214,220-221
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/DialogScreen.kt
+  s_1c2b8b409a1a23::t_5d1f3647818a8d 5-6,217-223,231-235,238
+  s_9d60ba4b8fd50d::t_c337c1b4ac6d06 227-230,236-237
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/LayoutViewScreen.kt
+  s_9d60ba4b8fd50d::t_804db5657ea2a6 186-189,195-196
+  s_1c2b8b409a1a23::t_a257c145566894 5-6,176-182,190-194,197
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/IntentNavigationScreen.kt
+  s_2aa36abc3bf409::t_7499998bbef7f8 5-6,93-97,105-109,112
+  s_9d60ba4b8fd50d::t_4c886bbd2fab7f 101-104,110-111
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/NetworkRequestScreen.kt
+  s_1c2b8b409a1a23::t_4fdd27500cf178 5-6,254-260,268-272,275
+  s_9d60ba4b8fd50d::t_3fa26fc3b31434 264-267,273-274
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/ImageLoadingScreen.kt
+  s_1c2b8b409a1a23::t_d3bc013886f06c 5-6,201-207,215-219,222
+  s_9d60ba4b8fd50d::t_820384c178ad6d 211-214,220-221
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/ActivityLifecycleScreen.kt
+  s_1c2b8b409a1a23::t_cd0c59a41ef884 5-6,100-104,112-116,119
+  s_9d60ba4b8fd50d::t_ce674557d4e394 108-111,117-118
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/ContentProviderScreen.kt
+  s_9d60ba4b8fd50d::t_1cef2e8a8e8685 114-117,123-124
+  s_1c2b8b409a1a23::t_898065915aff40 5-6,106-110,118-122,125
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/FragmentScreen.kt
+  s_1c2b8b409a1a23::t_887873ecc20c48 5-6,140-146,154-158,161
+  s_9d60ba4b8fd50d::t_e08a9f71e4cc53 150-153,159-160
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage2/ServiceScreen.kt
+  s_1c2b8b409a1a23::t_1f4b3b12842398 5-6,192-198,206-210,213
+  s_9d60ba4b8fd50d::t_fc691fc2a9a239 202-205,211-212
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/JavaBasicsScreen.kt
+  s_1c2b8b409a1a23::t_79254c4c611626 5-6,525-536,544-548,551
+  s_9d60ba4b8fd50d::t_5f2a4c5b98edca 540-543,549-550
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/ResourceManagementScreen.kt
+  s_2aa36abc3bf409::t_858c29e074dbfa 5-6,83-87,95-99,102
+  s_9d60ba4b8fd50d::t_74d01ece0036ee 91-94,100-101
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage3/MediaBasicsScreen.kt
+  s_1c2b8b409a1a23::t_c16bd217c48610 5-6,225-231,239-243,246
+  s_9d60ba4b8fd50d::t_a8a38d9b95150c 235-238,244-245
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/DevToolsScreen.kt
+  s_2aa36abc3bf409::t_d23bab8739bb0c 5-6,183-188,196-200,203
+  s_9d60ba4b8fd50d::t_1640cb6db5a653 192-195,201-202
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/AndroidStudioScreen.kt
+  s_2aa36abc3bf409::t_13575a9ae4d737 5-6,286-295,303-307,310
+  s_9d60ba4b8fd50d::t_26e947a15711e8 299-302,308-309
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "f4365e3750cbd7b2e0ef4fda7444dee7c7b4073c",
+  "prompts": {},
+  "sessions": {
+    "s_00a8604db7f68e": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "d12559f9-6577-4d9b-9ffc-e11e1bf14182",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_1c2b8b409a1a23": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "473b3676-7706-4771-91c8-e298605b3aff",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_2aa36abc3bf409": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "077080a3-75e6-4c54-b3ea-bd7c5cdfd997",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_3180f087eeead0": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "8f3ca751-1b57-440c-9818-d9c7157ed391",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_9d60ba4b8fd50d": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "c8de7c64-f227-4cec-9588-21a5beaba98e",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
