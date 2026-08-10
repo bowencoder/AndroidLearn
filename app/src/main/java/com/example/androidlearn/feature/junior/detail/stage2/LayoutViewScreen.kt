@@ -1,18 +1,9 @@
 package com.example.androidlearn.feature.junior.detail.stage2
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.androidlearn.feature.shared.NoteChapter
+import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * 布局与 View 笔记
@@ -181,82 +172,27 @@ import androidx.compose.ui.unit.sp
 
 private val Green = Color(0xFF4CAF50)
 
-private data class LayoutChapter(val num: String, val title: String)
-
 private val chapters = listOf(
-    LayoutChapter("1", "常用布局容器"),
-    LayoutChapter("2", "ConstraintLayout（推荐首选）"),
-    LayoutChapter("3", "RecyclerView"),
-    LayoutChapter("4", "ViewBinding"),
-    LayoutChapter("5", "常用基础控件"),
-    LayoutChapter("6", "自定义 View"),
-    LayoutChapter("7", "最佳实践"),
+    NoteChapter("1", "常用布局容器"),
+    NoteChapter("2", "ConstraintLayout（推荐首选）"),
+    NoteChapter("3", "RecyclerView"),
+    NoteChapter("4", "ViewBinding"),
+    NoteChapter("5", "常用基础控件"),
+    NoteChapter("6", "自定义 View"),
+    NoteChapter("7", "最佳实践"),
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LayoutViewScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("布局与 View", fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Text(
-                            "ConstraintLayout · RecyclerView · ViewBinding",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, "返回", tint = MaterialTheme.colorScheme.onPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Green,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(chapters.size) { i -> ChapterRowLayout(chapters[i]) }
-            item { Spacer(Modifier.height(8.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun ChapterRowLayout(chapter: LayoutChapter) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = Green.copy(alpha = 0.12f)
-            ) {
-                Text(
-                    chapter.num,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Green
-                )
-            }
-            Spacer(Modifier.width(12.dp))
-            Text(chapter.title, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-        }
-    }
+fun LayoutViewScreen(
+    onBack: () -> Unit,
+    onChapterClick: (NoteChapter) -> Unit = {}
+) {
+    NoteDetailScaffold(
+        title = "布局与 View",
+        subtitle = "ConstraintLayout · RecyclerView · ViewBinding",
+        color = Green,
+        chapters = chapters,
+        onBack = onBack,
+        onChapterClick = onChapterClick
+    )
 }

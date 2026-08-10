@@ -1,18 +1,9 @@
 package com.example.androidlearn.feature.junior.detail.stage1
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.androidlearn.feature.shared.NoteChapter
+import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * Kotlin 核心语法笔记
@@ -470,93 +461,38 @@ import androidx.compose.ui.unit.sp
 
 private val Green = Color(0xFF4CAF50)
 
-private data class KtChapter(val num: String, val title: String)
-
 private val chapters = listOf(
-    KtChapter("1",  "变量"),
-    KtChapter("2",  "基本类型"),
-    KtChapter("3",  "集合"),
-    KtChapter("4",  "控制流程与循环"),
-    KtChapter("5",  "函数与 Lambda"),
-    KtChapter("6",  "类"),
-    KtChapter("7",  "空安全"),
-    KtChapter("8",  "继承"),
-    KtChapter("9",  "接口"),
-    KtChapter("10", "扩展"),
-    KtChapter("11", "数据类与密封类"),
-    KtChapter("12", "泛型"),
-    KtChapter("13", "枚举类"),
-    KtChapter("14", "对象"),
-    KtChapter("15", "作用域函数"),
-    KtChapter("16", "带接收者的 Lambda"),
-    KtChapter("17", "属性进阶"),
-    KtChapter("18", "库与 API"),
+    NoteChapter("1",  "变量"),
+    NoteChapter("2",  "基本类型"),
+    NoteChapter("3",  "集合"),
+    NoteChapter("4",  "控制流程与循环"),
+    NoteChapter("5",  "函数与 Lambda"),
+    NoteChapter("6",  "类"),
+    NoteChapter("7",  "空安全"),
+    NoteChapter("8",  "继承"),
+    NoteChapter("9",  "接口"),
+    NoteChapter("10", "扩展"),
+    NoteChapter("11", "数据类与密封类"),
+    NoteChapter("12", "泛型"),
+    NoteChapter("13", "枚举类"),
+    NoteChapter("14", "对象"),
+    NoteChapter("15", "作用域函数"),
+    NoteChapter("16", "带接收者的 Lambda"),
+    NoteChapter("17", "属性进阶"),
+    NoteChapter("18", "库与 API"),
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KotlinSyntaxScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("Kotlin 核心语法", fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Text(
-                            "官方 Tour · 变量 → 库与 API（共 18 章）",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, "返回", tint = MaterialTheme.colorScheme.onPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Green,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(chapters.size) { i -> ChapterRowKotlin(chapters[i]) }
-            item { Spacer(Modifier.height(8.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun ChapterRowKotlin(chapter: KtChapter) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = Green.copy(alpha = 0.12f)
-            ) {
-                Text(
-                    chapter.num,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Green
-                )
-            }
-            Spacer(Modifier.width(12.dp))
-            Text(chapter.title, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-        }
-    }
+fun KotlinSyntaxScreen(
+    onBack: () -> Unit,
+    onChapterClick: (NoteChapter) -> Unit = {}
+) {
+    NoteDetailScaffold(
+        title = "Kotlin 核心语法",
+        subtitle = "官方 Tour · 变量 → 库与 API（共 18 章）",
+        color = Green,
+        chapters = chapters,
+        onBack = onBack,
+        onChapterClick = onChapterClick
+    )
 }

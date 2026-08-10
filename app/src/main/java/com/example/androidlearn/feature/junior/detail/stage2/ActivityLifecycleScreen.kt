@@ -1,18 +1,9 @@
 package com.example.androidlearn.feature.junior.detail.stage2
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.androidlearn.feature.shared.NoteChapter
+import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * Activity 与生命周期笔记
@@ -105,80 +96,25 @@ import androidx.compose.ui.unit.sp
 
 private val Blue = Color(0xFF2196F3)
 
-private data class LifecycleChapter(val num: String, val title: String)
-
 private val chapters = listOf(
-    LifecycleChapter("1", "生命周期回调顺序"),
-    LifecycleChapter("2", "状态保存与恢复"),
-    LifecycleChapter("3", "Activity 启动模式（launchMode）"),
-    LifecycleChapter("4", "Lifecycle 组件（Jetpack）"),
-    LifecycleChapter("5", "最佳实践"),
+    NoteChapter("1", "生命周期回调顺序"),
+    NoteChapter("2", "状态保存与恢复"),
+    NoteChapter("3", "Activity 启动模式（launchMode）"),
+    NoteChapter("4", "Lifecycle 组件（Jetpack）"),
+    NoteChapter("5", "最佳实践"),
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ActivityLifecycleScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("Activity 与生命周期", fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Text(
-                            "onCreate · onResume · 状态保存 · 启动模式",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, "返回", tint = MaterialTheme.colorScheme.onPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Blue,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(chapters.size) { i -> ChapterRowLifecycle(chapters[i]) }
-            item { Spacer(Modifier.height(8.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun ChapterRowLifecycle(chapter: LifecycleChapter) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = Blue.copy(alpha = 0.12f)
-            ) {
-                Text(
-                    chapter.num,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Blue
-                )
-            }
-            Spacer(Modifier.width(12.dp))
-            Text(chapter.title, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-        }
-    }
+fun ActivityLifecycleScreen(
+    onBack: () -> Unit,
+    onChapterClick: (NoteChapter) -> Unit = {}
+) {
+    NoteDetailScaffold(
+        title = "Activity 与生命周期",
+        subtitle = "onCreate · onResume · 状态保存 · 启动模式",
+        color = Blue,
+        chapters = chapters,
+        onBack = onBack,
+        onChapterClick = onChapterClick
+    )
 }

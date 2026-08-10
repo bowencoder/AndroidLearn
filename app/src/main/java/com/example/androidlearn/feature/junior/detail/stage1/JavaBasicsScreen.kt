@@ -1,18 +1,9 @@
 package com.example.androidlearn.feature.junior.detail.stage1
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.androidlearn.feature.shared.NoteChapter
+import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * 廖雪峰 Java 教程笔记
@@ -530,87 +521,32 @@ import androidx.compose.ui.unit.sp
 
 private val Green = Color(0xFF4CAF50)
 
-private data class Chapter(val num: String, val title: String)
-
 private val chapters = listOf(
-    Chapter("1",  "基础语法 & 数组"),
-    Chapter("2",  "面向对象基础（OOP）"),
-    Chapter("3",  "Java 核心类"),
-    Chapter("4",  "异常处理"),
-    Chapter("5",  "反射"),
-    Chapter("6",  "注解"),
-    Chapter("7",  "泛型"),
-    Chapter("8",  "集合框架"),
-    Chapter("9",  "IO"),
-    Chapter("10", "日期与时间"),
-    Chapter("11", "多线程"),
-    Chapter("12", "函数式编程"),
+    NoteChapter("1",  "基础语法 & 数组"),
+    NoteChapter("2",  "面向对象基础（OOP）"),
+    NoteChapter("3",  "Java 核心类"),
+    NoteChapter("4",  "异常处理"),
+    NoteChapter("5",  "反射"),
+    NoteChapter("6",  "注解"),
+    NoteChapter("7",  "泛型"),
+    NoteChapter("8",  "集合框架"),
+    NoteChapter("9",  "IO"),
+    NoteChapter("10", "日期与时间"),
+    NoteChapter("11", "多线程"),
+    NoteChapter("12", "函数式编程"),
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun JavaBasicsScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("Java 核心基础", fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Text(
-                            "廖雪峰教程 2.3 → 19（函数式编程）",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, "返回", tint = MaterialTheme.colorScheme.onPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Green,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(chapters.size) { i -> ChapterRow(chapters[i]) }
-            item { Spacer(Modifier.height(8.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun ChapterRow(chapter: Chapter) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = Green.copy(alpha = 0.12f)
-            ) {
-                Text(
-                    chapter.num,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Green
-                )
-            }
-            Spacer(Modifier.width(12.dp))
-            Text(chapter.title, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-        }
-    }
+fun JavaBasicsScreen(
+    onBack: () -> Unit,
+    onChapterClick: (NoteChapter) -> Unit = {}
+) {
+    NoteDetailScaffold(
+        title = "Java 核心基础",
+        subtitle = "廖雪峰教程 2.3 → 19（函数式编程）",
+        color = Green,
+        chapters = chapters,
+        onBack = onBack,
+        onChapterClick = onChapterClick
+    )
 }

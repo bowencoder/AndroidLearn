@@ -133,7 +133,7 @@ fun MainApp() {
                 val stageIndex = backStackEntry.arguments?.getInt("stageIndex") ?: 0
                 val topicIndex = backStackEntry.arguments?.getInt("topicIndex") ?: 0
                 when (stageIndex) {
-                    0, 1, 2 -> JuniorRouter(stageIndex, topicIndex) { navController.popBackStack() }
+                    0, 1, 2 -> JuniorRouter(stageIndex, topicIndex, onBack = { navController.popBackStack() })
                     3, 4, 5, 6 -> IntermediateRouter(stageIndex, topicIndex) { navController.popBackStack() }
                     else -> SeniorRouter(stageIndex, topicIndex) { navController.popBackStack() }
                 }

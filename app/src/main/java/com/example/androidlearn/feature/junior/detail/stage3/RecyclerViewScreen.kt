@@ -1,18 +1,9 @@
 package com.example.androidlearn.feature.junior.detail.stage3
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.androidlearn.feature.shared.NoteChapter
+import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * RecyclerView 笔记
@@ -205,83 +196,28 @@ import androidx.compose.ui.unit.sp
 
 private val Teal = Color(0xFF009688)
 
-private data class RvChapter(val num: String, val title: String)
-
 private val chapters = listOf(
-    RvChapter("1", "核心组件"),
-    RvChapter("2", "ListAdapter + DiffUtil（推荐）"),
-    RvChapter("3", "点击事件处理"),
-    RvChapter("4", "LayoutManager 布局方式"),
-    RvChapter("5", "多类型 Item（Multi ViewType）"),
-    RvChapter("6", "ItemDecoration 与 ItemAnimator"),
-    RvChapter("7", "性能优化"),
-    RvChapter("8", "最佳实践"),
+    NoteChapter("1", "核心组件"),
+    NoteChapter("2", "ListAdapter + DiffUtil（推荐）"),
+    NoteChapter("3", "点击事件处理"),
+    NoteChapter("4", "LayoutManager 布局方式"),
+    NoteChapter("5", "多类型 Item（Multi ViewType）"),
+    NoteChapter("6", "ItemDecoration 与 ItemAnimator"),
+    NoteChapter("7", "性能优化"),
+    NoteChapter("8", "最佳实践"),
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecyclerViewScreen(onBack: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text("RecyclerView 高效列表", fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Text(
-                            "Adapter · DiffUtil · LayoutManager · 多类型",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
-                        )
-                    }
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, "返回", tint = MaterialTheme.colorScheme.onPrimary)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Teal,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(chapters.size) { i -> ChapterRowRv(chapters[i]) }
-            item { Spacer(Modifier.height(8.dp)) }
-        }
-    }
-}
-
-@Composable
-private fun ChapterRowRv(chapter: RvChapter) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(1.dp)
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = Teal.copy(alpha = 0.12f)
-            ) {
-                Text(
-                    chapter.num,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Teal
-                )
-            }
-            Spacer(Modifier.width(12.dp))
-            Text(chapter.title, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-        }
-    }
+fun RecyclerViewScreen(
+    onBack: () -> Unit,
+    onChapterClick: (NoteChapter) -> Unit = {}
+) {
+    NoteDetailScaffold(
+        title = "RecyclerView 高效列表",
+        subtitle = "Adapter · DiffUtil · LayoutManager · 多类型",
+        color = Teal,
+        chapters = chapters,
+        onBack = onBack,
+        onChapterClick = onChapterClick
+    )
 }
