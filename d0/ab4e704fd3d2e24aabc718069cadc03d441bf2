@@ -1,0 +1,19 @@
+app/src/main/java/com/example/androidlearn/feature/junior/JuniorScreen.kt
+  s_568284fe5cf9dc::t_2edcac7fb6b6d0 101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "d0ab4e704fd3d2e24aabc718069cadc03d441bf2",
+  "prompts": {},
+  "sessions": {
+    "s_568284fe5cf9dc": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "164daeaa-caa6-4fb1-ae71-da03f7c5adb1",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
