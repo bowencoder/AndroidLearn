@@ -1,0 +1,144 @@
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/AdvancedModularizationScreen.kt
+  s_1122446ff53af9::t_142207b05e34a9 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/RichTextScreen.kt
+  s_d9424105eca2a5::t_e95f3dbf3b3b17 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/ResourceMgrScreen.kt
+  s_d9424105eca2a5::t_3a6a07cd6a15d7 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/AndroidInternalsScreen.kt
+  s_1122446ff53af9::t_ef3a86cb162139 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage13/CMakeScreen.kt
+  s_d9424105eca2a5::t_f455d3d6981a6b 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/WindowMechanismScreen.kt
+  s_d9424105eca2a5::t_03c8bbfc66f2bf 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/SeniorNoteDetailActivity.kt
+  s_d9424105eca2a5::t_8d3e024a3c41b4 1-163
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage11/GcAlgorithmScreen.kt
+  s_d9424105eca2a5::t_d8c96293e6a696 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/ImageOptScreen.kt
+  s_d9424105eca2a5::t_1c2e82514fa370 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/SystemArchScreen.kt
+  s_d9424105eca2a5::t_2bd8eb345aa209 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage13/NdkPracticeScreen.kt
+  s_d9424105eca2a5::t_a27752705c1922 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/RenderOptimizationScreen.kt
+  s_1122446ff53af9::t_a04ae667515fa4 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/ApkBuildScreen.kt
+  s_d9424105eca2a5::t_2746ed0c83295a 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/ProguardScreen.kt
+  s_d9424105eca2a5::t_8fde75c85710e0 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/SecurityScreen.kt
+  s_1122446ff53af9::t_c00bee7ae9ce7c 3-5,7,9-24
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage12/ComponentizationScreen.kt
+  s_d9424105eca2a5::t_c34cd7231e22c7 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage13/CppBasicsScreen.kt
+  s_d9424105eca2a5::t_c5c2ece7019eee 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/ClassLoaderScreen.kt
+  s_1122446ff53af9::t_900f6e91eae965 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/ScreenAdaptScreen.kt
+  s_d9424105eca2a5::t_df043d62f197df 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/SignatureScreen.kt
+  s_d9424105eca2a5::t_d1cb4e10543c08 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/CasScreen.kt
+  s_1122446ff53af9::t_2d1280913a6b6c 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/PermissionScreen.kt
+  s_d9424105eca2a5::t_5008f0b7fbe8a3 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/AnrScreen.kt
+  s_1122446ff53af9::t_138300164a8009 3-5,7,9-26
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/ThreadPoolScreen.kt
+  s_d9424105eca2a5::t_b40764deb7dc88 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/VersionCompatScreen.kt
+  s_d9424105eca2a5::t_22eca191d16db2 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/BinderScreen.kt
+  s_1122446ff53af9::t_a0f7b9310ab501 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/JmmScreen.kt
+  s_1122446ff53af9::t_b2b06f72c44394 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/AppInstallScreen.kt
+  s_d9424105eca2a5::t_4671479cbf68b4 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/TechDesignScreen.kt
+  s_1122446ff53af9::t_1f6cab67b6d925 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/PackageSizeScreen.kt
+  s_1122446ff53af9::t_1eff3f521671df 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage14/SkinChangeScreen.kt
+  s_d9424105eca2a5::t_c98ce9d3f4fb72 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/ArtGcScreen.kt
+  s_1122446ff53af9::t_b5582ce959dde8 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/ThreadSyncScreen.kt
+  s_1122446ff53af9::t_5fe3a05d8a7970 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/AnimationScreen.kt
+  s_d9424105eca2a5::t_0c466b9633eda5 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage12/HotfixScreen.kt
+  s_d9424105eca2a5::t_1ef29e7aa9773b 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/AppStartupScreen.kt
+  s_1122446ff53af9::t_0a43f3d2fc9820 3-5,7,9-26
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/BitmapScreen.kt
+  s_d9424105eca2a5::t_b6d472b038c567 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/ViewDrawScreen.kt
+  s_1122446ff53af9::t_a4b7898050565b 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage12/MultiChannelScreen.kt
+  s_d9424105eca2a5::t_08dca1506b4490 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage11/OomAnalysisScreen.kt
+  s_d9424105eca2a5::t_1e196bed551247 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/NoteDetailActivity.kt
+  s_d9424105eca2a5::t_d88f96f1cec236 171
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/GradlePluginScreen.kt
+  s_1122446ff53af9::t_1947499003c5ee 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage11/ObjectStructureScreen.kt
+  s_d9424105eca2a5::t_ed4609707be405 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/SynchronizedScreen.kt
+  s_1122446ff53af9::t_b6f8eb15cd3395 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage12/PluginizationScreen.kt
+  s_d9424105eca2a5::t_6c1969cc5440a2 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage7/ActivityStartupScreen.kt
+  s_1122446ff53af9::t_29bb747d8d68f6 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/AqsScreen.kt
+  s_1122446ff53af9::t_b7fbe21a7125a1 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage10/NioScreen.kt
+  s_1122446ff53af9::t_05aae58948701f 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage5/StabilityMonitorScreen.kt
+  s_1122446ff53af9::t_1db0ad150f3159 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage11/DalvikArtScreen.kt
+  s_d9424105eca2a5::t_da0fd09adc6329 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage15/SurfaceViewScreen.kt
+  s_d9424105eca2a5::t_a8779b88555e24 3-5,7,9-23
+app/src/main/AndroidManifest.xml
+  s_d9424105eca2a5::t_038665932c901a 33-38
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/CiCdAdvancedScreen.kt
+  s_1122446ff53af9::t_a4b02478d2b0e4 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/AgpTransformScreen.kt
+  s_d9424105eca2a5::t_73532ae3791449 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/KmmScreen.kt
+  s_1122446ff53af9::t_99d93276d798b5 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage6/CleanArchScreen.kt
+  s_1122446ff53af9::t_3ba9f04812321c 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/MainActivity.kt
+  s_d9424105eca2a5::t_ca94dbe88c7f20 35
+  s_d9424105eca2a5::t_2b1da3b5bd987f 121,124,128,138
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage13/JniScreen.kt
+  s_d9424105eca2a5::t_b9a6ae5742df5f 3-5,7,9-23
+app/src/main/java/com/example/androidlearn/feature/senior/detail/stage16/SerializationScreen.kt
+  s_d9424105eca2a5::t_b36e5e9d7b05ce 3-5,7,9-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "720dd43eeac5e58d551e68ce30b4603f4a9a43a9",
+  "prompts": {},
+  "sessions": {
+    "s_1122446ff53af9": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "70ae7926-5a5d-42a9-9654-da846318a549",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_d9424105eca2a5": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "8e148ad5-6244-4e7a-8d54-a0add84f7f4c",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
