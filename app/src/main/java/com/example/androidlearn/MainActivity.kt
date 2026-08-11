@@ -32,7 +32,7 @@ import com.example.androidlearn.feature.intermediate.IntermediateScreen
 import com.example.androidlearn.feature.senior.SeniorScreen
 import com.example.androidlearn.feature.junior.detail.JuniorRouter
 import com.example.androidlearn.feature.intermediate.detail.NoteDetailActivity
-import com.example.androidlearn.feature.senior.detail.SeniorRouter
+import com.example.androidlearn.feature.senior.detail.SeniorNoteDetailActivity
 import com.example.androidlearn.ui.theme.AndroidLearnTheme
 
 class MainActivity : ComponentActivity() {
@@ -118,13 +118,14 @@ fun MainApp() {
             }
             // ── 高级工程师 Tab ─────────────────────────────
             composable(BottomNavItem.Senior.route) {
+                val context = LocalContext.current
                 SeniorScreen(
                     onTopicClick = { stageIndex, topicIndex ->
-                        navController.navigate("topic_detail/$stageIndex/$topicIndex")
+                        SeniorNoteDetailActivity.start(context, stageIndex, topicIndex)
                     }
                 )
             }
-            // ── 主题详情页（初级 / 高级共用）─────────────────────
+            // ── 主题详情页（初级专用）─────────────────────────
             composable(
                 route = "topic_detail/{stageIndex}/{topicIndex}",
                 arguments = listOf(
@@ -134,10 +135,7 @@ fun MainApp() {
             ) { backStackEntry ->
                 val stageIndex = backStackEntry.arguments?.getInt("stageIndex") ?: 0
                 val topicIndex = backStackEntry.arguments?.getInt("topicIndex") ?: 0
-                when (stageIndex) {
-                    0, 1, 2 -> JuniorRouter(stageIndex, topicIndex, onBack = { navController.popBackStack() })
-                    else -> SeniorRouter(stageIndex, topicIndex) { navController.popBackStack() }
-                }
+                JuniorRouter(stageIndex, topicIndex, onBack = { navController.popBackStack() })
             }
         }
     }

@@ -30,6 +30,12 @@
             android:name=".feature.intermediate.detail.NoteDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.AndroidLearn.NoteDetail" />
+
+        <!-- 高级工程师笔记详情页（传统 View 实现） -->
+        <activity
+            android:name=".feature.senior.detail.SeniorNoteDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidLearn.NoteDetail" />
     </application>
 
 </manifest>

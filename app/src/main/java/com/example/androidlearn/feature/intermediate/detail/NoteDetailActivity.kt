@@ -168,7 +168,7 @@ data class ChapterItem(val num: String, val title: String)
 //  RecyclerView Adapter
 // ─────────────────────────────────────────────────────────────────────────────
 
-private class ChapterAdapter(
+internal class ChapterAdapter(
     private val items: List<ChapterItem>,
     private val themeColor: Int
 ) : RecyclerView.Adapter<ChapterAdapter.VH>() {
