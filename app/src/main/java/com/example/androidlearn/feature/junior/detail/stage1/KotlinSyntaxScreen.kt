@@ -457,6 +457,153 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  *  @OptIn(ExperimentalUnsignedTypes::class)     // @available(*, deprecated)  /  @_spi(...)
  *  fun useUInt() { val arr = uintArrayOf(1u, 2u) }
+ *
+ *
+ * ── 19  协程（Coroutines）────────────────────────────────────────────────────
+ *
+ *  · 协程是 Kotlin 提供的轻量级并发原语，可在单线程上挂起/恢复，不阻塞线程
+ *  · 依赖库：implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.x.x")
+ *  · ≈ Swift async/await（Swift 5.5+），但 Kotlin 协程更灵活，支持结构化并发
+ *
+ * ── 19.1  suspend 函数 ────────────────────────────────────────────────────────
+ *
+ *  · suspend 关键字标记可挂起函数，只能在协程或其他 suspend 函数中调用
+ *  · 挂起时不阻塞线程，线程可去执行其他任务，恢复后继续执行
+ *
+ *  // Kotlin                                    // Swift
+ *  suspend fun fetchUser(): User {              // func fetchUser() async throws -> User {
+ *      delay(1000)                              //     try await Task.sleep(nanoseconds: 1_000_000_000)
+ *      return api.getUser()                     //     return try await api.getUser()
+ *  }                                            // }
+ *
+ *
+ * ── 19.2  CoroutineScope 与启动方式 ──────────────────────────────────────────
+ *
+ *  · launch：启动协程，返回 Job，不关心结果（fire-and-forget）
+ *  · async：启动协程，返回 Deferred<T>，通过 await() 获取结果
+ *  · runBlocking：阻塞当前线程直到协程完成（仅用于测试/main 函数）
+ *
+ *  // Kotlin                                    // Swift
+ *  // launch（不关心返回值）
+ *  viewModelScope.launch {                      // Task {
+ *      updateUi()                               //     await updateUi()
+ *  }                                            // }
+ *
+ *  // async/await（并行获取两个结果）
+ *  viewModelScope.launch {                      // async let user = fetchUser()
+ *      val userDeferred = async { fetchUser() } // async let config = fetchConfig()
+ *      val cfgDeferred  = async { fetchConfig() }
+ *      val user   = userDeferred.await()        // let (u, c) = try await (user, config)
+ *      val config = cfgDeferred.await()
+ *  }
+ *
+ *
+ * ── 19.3  Dispatchers 调度器 ─────────────────────────────────────────────────
+ *
+ *  · Dispatchers.Main    → 主线程（UI 操作）
+ *  · Dispatchers.IO      → I/O 密集型（网络、磁盘），线程池最多 64 个线程
+ *  · Dispatchers.Default → CPU 密集型（排序、解析），线程数 = CPU 核心数
+ *  · Dispatchers.Unconfined → 不限定线程（测试用，生产慎用）
+ *
+ *  // Kotlin                                    // Swift（MainActor / 后台 Task）
+ *  withContext(Dispatchers.IO) {                // await Task.detached(priority: .background) {
+ *      val data = readFile()                    //     let data = readFile()
+ *  }                                            // }.value
+ *
+ *  withContext(Dispatchers.Main) {              // await MainActor.run {
+ *      binding.tvName.text = name              //     label.text = name
+ *  }                                            // }
+ *
+ *
+ * ── 19.4  结构化并发与 Job ────────────────────────────────────────────────────
+ *
+ *  · 每个协程都有父 Job，父取消则子全部取消（结构化并发）
+ *  · viewModelScope：ViewModel 销毁时自动取消所有子协程
+ *  · lifecycleScope：Activity/Fragment 生命周期结束时自动取消
+ *  · supervisorScope：子协程失败不影响兄弟协程
+ *
+ *  // Kotlin
+ *  val job = viewModelScope.launch {
+ *      val child1 = launch { doWork1() }
+ *      val child2 = launch { doWork2() }
+ *  }
+ *  job.cancel()  // child1 和 child2 也会被取消
+ *
+ *  supervisorScope {
+ *      val a = async { riskyTask() }   // a 失败不影响 b
+ *      val b = async { safeTask() }
+ *      b.await()  // 仍可正常获取 b 的结果
+ *  }
+ *
+ *
+ * ── 19.5  Flow 数据流 ─────────────────────────────────────────────────────────
+ *
+ *  · Flow<T>：冷流，订阅时才执行，顺序发射多个值（≈ Swift AsyncSequence）
+ *  · StateFlow<T>：热流，始终有值，新订阅者立即收到当前值（≈ Swift @Published）
+ *  · SharedFlow<T>：热流，可配置缓存，适合一次性事件（导航、Toast）
+ *
+ *  // 冷流
+ *  fun getItems(): Flow<List<Item>> = flow {
+ *      emit(db.getItems())          // 先发本地缓存
+ *      emit(api.getItems())         // 再发网络数据
+ *  }.flowOn(Dispatchers.IO)         // 在 IO 线程执行
+ *
+ *  // 收集
+ *  viewModelScope.launch {
+ *      getItems().collect { items -> updateUi(items) }
+ *  }
+ *
+ *  // StateFlow（ViewModel 中）
+ *  private val _uiState = MutableStateFlow(UiState.Loading)
+ *  val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+ *
+ *  // SharedFlow（一次性事件）
+ *  private val _events = MutableSharedFlow<UiEvent>()
+ *  val events: SharedFlow<UiEvent> = _events.asSharedFlow()
+ *
+ *
+ * ── 19.6  异常处理 ────────────────────────────────────────────────────────────
+ *
+ *  · try/catch 在 suspend 函数中正常使用
+ *  · CoroutineExceptionHandler：捕获未处理的协程异常（仅对 launch 有效）
+ *  · Flow 的 catch 操作符：处理上游异常，不影响下游
+ *
+ *  // try/catch
+ *  viewModelScope.launch {
+ *      try {
+ *          val data = fetchData()
+ *          _uiState.value = UiState.Success(data)
+ *      } catch (e: IOException) {
+ *          _uiState.value = UiState.Error(e.message)
+ *      }
+ *  }
+ *
+ *  // CoroutineExceptionHandler
+ *  val handler = CoroutineExceptionHandler { _, e -> Log.e("TAG", e.message) }
+ *  viewModelScope.launch(handler) { riskyWork() }
+ *
+ *  // Flow catch 操作符
+ *  getItems()
+ *      .catch { e -> emit(emptyList()) }
+ *      .collect { updateUi(it) }
+ *
+ *
+ * ── 19.7  常用操作符 ──────────────────────────────────────────────────────────
+ *
+ *  · map / filter / take / drop：转换与过滤（≈ Swift map/filter/prefix/dropFirst）
+ *  · combine：合并多个 Flow 的最新值
+ *  · flatMapLatest：切换到最新 Flow，取消旧的（≈ Swift switchToLatest）
+ *  · debounce：防抖，延迟指定时间后才发射（搜索框常用）
+ *  · distinctUntilChanged：过滤连续重复值
+ *
+ *  searchQuery
+ *      .debounce(300)
+ *      .distinctUntilChanged()
+ *      .flatMapLatest { query -> searchApi(query) }
+ *      .collect { results -> updateUi(results) }
+ *
+ *  combine(flow1, flow2) { a, b -> a + b }
+ *      .collect { sum -> println(sum) }
  */
 
 private val Green = Color(0xFF4CAF50)
@@ -480,6 +627,14 @@ private val chapters = listOf(
     NoteChapter("16", "带接收者的 Lambda"),
     NoteChapter("17", "属性进阶"),
     NoteChapter("18", "库与 API"),
+    NoteChapter("19", "协程"),
+    NoteChapter("19.1", "suspend 函数"),
+    NoteChapter("19.2", "CoroutineScope 与启动方式"),
+    NoteChapter("19.3", "Dispatchers 调度器"),
+    NoteChapter("19.4", "结构化并发与 Job"),
+    NoteChapter("19.5", "Flow 数据流"),
+    NoteChapter("19.6", "异常处理"),
+    NoteChapter("19.7", "常用操作符"),
 )
 
 @Composable
@@ -489,7 +644,7 @@ fun KotlinSyntaxScreen(
 ) {
     NoteDetailScaffold(
         title = "Kotlin 核心语法",
-        subtitle = "官方 Tour · 变量 → 库与 API（共 18 章）",
+        subtitle = "官方 Tour · 变量 → 协程（共 19 章）",
         color = Green,
         chapters = chapters,
         onBack = onBack,

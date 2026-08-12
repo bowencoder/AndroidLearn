@@ -10,58 +10,151 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *
  * ── 1  Gradle 核心概念 ────────────────────────────────────────────────────────
  *
- *  构建流程：
- *  · Initialization → Configuration → Execution
- *  · Initialization：确定哪些项目参与构建（settings.gradle.kts）
- *  · Configuration：解析所有 build.gradle.kts，构建任务依赖图
- *  · Execution：按依赖顺序执行任务
+ *  构建流程（三阶段）：
+ *  · Initialization：读取 settings.gradle.kts，确定哪些子项目参与构建
+ *  · Configuration：解析所有 build.gradle.kts，构建任务有向无环图（DAG）
+ *  · Execution：按 DAG 依赖顺序执行任务（增量构建：只执行输入/输出变化的任务）
  *
  *  关键文件：
- *  · settings.gradle.kts：声明项目名称和子模块
- *  · build.gradle.kts（根）：配置所有模块共用的插件版本
- *  · app/build.gradle.kts：模块级配置（compileSdk、依赖等）
- *  · gradle/libs.versions.toml：版本目录，统一管理所有依赖版本
+ *  · settings.gradle.kts：声明项目名称和子模块（必须）
+ *  · build.gradle.kts（根）：配置所有模块共用的插件版本（通常只声明 plugins）
+ *  · app/build.gradle.kts：模块级配置（android 块、依赖等）
+ *  · gradle/libs.versions.toml：版本目录，统一管理所有依赖版本（推荐）
  *  · gradle.properties：全局属性（JVM 参数、特性开关等）
+ *  · gradle/wrapper/gradle-wrapper.properties：指定 Gradle 版本（distributionUrl）
  *
- *  // settings.gradle.kts
+ *  AGP（Android Gradle Plugin）：
+ *  · Google 维护的 Gradle 插件，提供 android {} 配置块和 Android 专属任务
+ *  · AGP 版本与 Gradle 版本有对应关系，升级时需同步升级
+ *  · 当前推荐：AGP 8.x + Gradle 8.x + JDK 17
+ *
+ *  // settings.gradle.kts 完整示例
+ *  pluginManagement {
+ *      repositories {
+ *          google(); mavenCentral(); gradlePluginPortal()
+ *      }
+ *  }
+ *  dependencyResolutionManagement {
+ *      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+ *      repositories { google(); mavenCentral() }
+ *  }
  *  rootProject.name = "AndroidLearn"
  *  include(":app")
  *  include(":feature:login")   // 多模块项目
+ *
+ *  // app/build.gradle.kts 完整结构
+ *  plugins {
+ *      alias(libs.plugins.android.application)   // com.android.application
+ *      alias(libs.plugins.kotlin.android)        // org.jetbrains.kotlin.android
+ *      alias(libs.plugins.ksp)                   // 注解处理器（替代 kapt）
+ *  }
+ *
+ *  android {
+ *      namespace = "com.example.app"
+ *      compileSdk = 35
+ *
+ *      defaultConfig {
+ *          applicationId = "com.example.app"
+ *          minSdk = 24
+ *          targetSdk = 35
+ *          versionCode = 1
+ *          versionName = "1.0"
+ *          testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+ *          multiDexEnabled = true          // 方法数超 65535 时开启
+ *      }
+ *
+ *      buildTypes {
+ *          release {
+ *              isMinifyEnabled = true      // 开启 R8 混淆/裁剪
+ *              isShrinkResources = true    // 裁剪未使用资源
+ *              proguardFiles(
+ *                  getDefaultProguardFile("proguard-android-optimize.txt"),
+ *                  "proguard-rules.pro"
+ *              )
+ *          }
+ *          debug {
+ *              isDebuggable = true
+ *              applicationIdSuffix = ".debug"   // debug 包名加后缀，可与 release 共存
+ *          }
+ *      }
+ *
+ *      compileOptions {
+ *          sourceCompatibility = JavaVersion.VERSION_17
+ *          targetCompatibility = JavaVersion.VERSION_17
+ *      }
+ *      kotlinOptions { jvmTarget = "17" }
+ *
+ *      buildFeatures {
+ *          viewBinding = true    // 开启 ViewBinding
+ *          buildConfig = true    // 生成 BuildConfig 类（含 DEBUG 常量等）
+ *      }
+ *  }
  *
  *  // gradle.properties 常用配置
  *  org.gradle.jvmargs=-Xmx4g -XX:+UseParallelGC   // 增大 Gradle JVM 内存
  *  org.gradle.parallel=true                         // 并行构建
  *  org.gradle.caching=true                          // 开启构建缓存
  *  android.useAndroidX=true
+ *  kotlin.code.style=official
  *
  *
  * ── 2  Gradle 依赖管理 ────────────────────────────────────────────────────────
  *
  *  依赖配置类型：
- *  · implementation：编译+运行时，不暴露给依赖此模块的其他模块（推荐）
- *  · api：编译+运行时，暴露给上层模块（谨慎使用，会增加编译时间）
- *  · testImplementation：只用于单元测试
- *  · androidTestImplementation：只用于 Android 仪器测试
- *  · debugImplementation：只在 debug 构建中包含
- *  · releaseImplementation：只在 release 构建中包含
+ *  · implementation    编译+运行时，不暴露给上层模块（最常用，推荐默认选择）
+ *  · api               编译+运行时，暴露给上层模块（谨慎使用，会增加编译时间）
+ *  · compileOnly       仅编译时可见，不打包进 APK（如 Lombok 注解、provided 依赖）
+ *  · runtimeOnly       仅运行时包含，编译时不可见（如日志实现库）
+ *  · ksp               KSP 注解处理器（推荐，替代 kapt，编译更快）
+ *  · kapt              KAPT 注解处理器（旧方式，Room/Hilt 旧版本使用）
+ *  · testImplementation        只用于本地单元测试（JVM）
+ *  · androidTestImplementation 只用于 Android 仪器测试（需设备/模拟器）
+ *  · debugImplementation       只在 debug 构建中包含
+ *  · releaseImplementation     只在 release 构建中包含
  *
- *  版本目录（libs.versions.toml）：
+ *  本地模块依赖：
+ *  implementation(project(":feature:login"))   // 依赖同项目的子模块
+ *  implementation(project(":core:network"))
+ *
+ *  版本目录（libs.versions.toml）推荐写法：
  *  [versions]
- *  retrofit = "2.9.0"
+ *  kotlin = "2.0.0"
+ *  retrofit = "2.11.0"
+ *  room = "2.6.1"
  *
  *  [libraries]
  *  retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+ *  retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+ *  room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+ *  room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+ *
+ *  [plugins]
+ *  android-application = { id = "com.android.application", version = "8.5.0" }
+ *  kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ *  ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.21" }
  *
  *  // build.gradle.kts 中引用
  *  implementation(libs.retrofit)
+ *  implementation(libs.retrofit.gson)
+ *  implementation(libs.room.runtime)
+ *  ksp(libs.room.compiler)          // 注解处理器用 ksp
  *
  *  BOM（Bill of Materials）：
- *  · 导入 BOM 后，同系列依赖无需单独指定版本
+ *  · 导入 BOM 后，同系列依赖无需单独指定版本，BOM 统一管理
  *  · Compose BOM、Firebase BOM 都是典型例子
  *
  *  implementation(platform(libs.androidx.compose.bom))
- *  implementation(libs.androidx.ui)          // 无需写版本，BOM 统一管理
+ *  implementation(libs.androidx.ui)          // 无需写版本
  *  implementation(libs.androidx.material3)   // 同上
+ *
+ *  版本冲突解决（resolutionStrategy）：
+ *  configurations.all {
+ *      resolutionStrategy {
+ *          force("com.squareup.okhttp3:okhttp:4.12.0")  // 强制指定版本
+ *          // 或排除某个传递依赖
+ *          exclude(group = "org.json", module = "json")
+ *      }
+ *  }
  *
  *  查看依赖树（排查版本冲突）：
  *  ./gradlew :app:dependencies --configuration releaseRuntimeClasspath
@@ -175,6 +268,43 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *          mavenCentral()
  *      }
  *  }
+ *
+ *
+ * ── 7  常见问题与解决 ─────────────────────────────────────────────────────────
+ *
+ *  Gradle Sync 失败：
+ *  · File → Invalidate Caches → Invalidate and Restart（最万能）
+ *  · 检查网络，配置国内 Maven 镜像（见第 6 章）
+ *  · 删除 Gradle 缓存目录：~/.gradle/caches/
+ *  · 检查 JDK 版本：File → Project Structure → SDK Location → Gradle JDK
+ *
+ *  Build 报错 "Duplicate class"：
+ *  · 通常是依赖版本冲突，用以下命令查看依赖树：
+ *  ./gradlew :app:dependencies --configuration releaseRuntimeClasspath
+ *  · 在 build.gradle.kts 中用 exclude 排除重复依赖：
+ *  implementation(libs.some.lib) {
+ *      exclude(group = "com.example", module = "conflicting-module")
+ *  }
+ *
+ *  "65535 method limit" 超出：
+ *  · 开启 multiDex：defaultConfig { multiDexEnabled = true }
+ *  · 添加依赖：implementation("androidx.multidex:multidex:2.0.1")
+ *  · 或开启 R8 混淆裁剪未使用代码（release 构建）
+ *
+ *  模拟器启动慢/卡：
+ *  · 确认 HAXM（Intel）或 WHPX（Windows）硬件加速已安装并启用
+ *  · 使用 x86_64 镜像而非 ARM 镜像（速度差 10 倍以上）
+ *  · 减少模拟器 RAM 分配（1.5GB 通常够用）
+ *
+ *  ADB 设备未识别：
+ *  · 确认已开启「开发者选项」和「USB 调试」
+ *  · 更换 USB 数据线（充电线不支持数据传输）
+ *  · adb kill-server && adb start-server（重启 ADB 服务）
+ *  · 安装对应厂商的 USB 驱动（Windows 常见问题）
+ *
+ *  Kotlin 编译报错 "Cannot inline bytecode"：
+ *  · 通常是 Kotlin 版本与 Compose/协程库版本不兼容
+ *  · 检查 libs.versions.toml 中 kotlin 版本，与 AGP 版本对应关系见官方文档
  */
 
 private val Green = Color(0xFF4CAF50)
@@ -186,6 +316,7 @@ private val chapters = listOf(
     NoteChapter("4", "ADB 设备与应用管理"),
     NoteChapter("5", "ADB 调试与文件操作"),
     NoteChapter("6", "工程效率技巧"),
+    NoteChapter("7", "常见问题与解决"),
 )
 
 @Composable
@@ -195,7 +326,7 @@ fun DevToolsScreen(
 ) {
     NoteDetailScaffold(
         title = "Gradle / ADB",
-        subtitle = "构建系统 · 调试工具",
+        subtitle = "构建系统 · ADB 工具 · 常见问题",
         color = Green,
         chapters = chapters,
         onBack = onBack,

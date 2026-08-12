@@ -7,9 +7,75 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
  * Android Studio 工具链笔记
+ * 当前最新稳定版：Android Studio Quail 3（2026.1.3）
  * 官方文档：https://developer.android.com/studio/intro
  *
- * ── 1  项目结构 ───────────────────────────────────────────────────────────────
+ * ── 1  主界面功能区域 ─────────────────────────────────────────────────────────
+ *
+ *  ┌──────────────────────────────────────────────────────────────────────────┐
+ *  │  顶部工具栏（Toolbar）：运行配置 / Run / Debug / Apply Changes / Sync     │
+ *  ├───────────┬──────────────────────────────────────┬──────────────────────┤
+ *  │           │                                      │                      │
+ *  │  Project  │         Editor（编辑区）              │  右侧工具栏           │
+ *  │  面板     │  · 代码编辑                           │  · Gradle            │
+ *  │  （左侧） │  · 多标签 / 分屏                      │  · Build Variants    │
+ *  │           │  · 行号 / 断点 / Gutter 图标          │  · Structure         │
+ *  │           │                                      │  · Device Manager    │
+ *  ├───────────┴──────────────────────────────────────┴──────────────────────┤
+ *  │  底部工具栏：Logcat / Running Devices / Terminal / Build / Debug / Git   │
+ *  └──────────────────────────────────────────────────────────────────────────┘
+ *
+ *  ① Project 面板（左侧）
+ *  · Android 视图（默认）：按逻辑分组（manifests / kotlin+java / res）
+ *    注意：新版已将 "java" 改为 "kotlin+java"
+ *  · Project 视图：完整文件树，看真实磁盘目录结构
+ *  · 切换方式：面板顶部下拉菜单（Android / Project / Packages 等）
+ *  · 快捷键：Alt+1（Mac: Cmd+1）打开/关闭 Project 面板
+ *
+ *  ② Editor（中央编辑区）
+ *  · 多标签页，支持分屏（右键 Tab → Split Right / Split Down）
+ *  · 左侧行号区：点击打断点，右键设置条件断点
+ *  · 顶部面包屑（Navigation Bar）：显示当前类/方法层级，可快速跳转
+ *  · Gutter 图标：行号旁绿色箭头可直接运行/调试测试方法
+ *  · Inline Hints：变量类型、参数名、返回值等内联提示（可在 Settings 开关）
+ *  · Live Edit（Quail 新特性）：Compose 代码修改后实时推送到模拟器，无需重新运行
+ *
+ *  ③ 右侧工具栏（竖向图标，点击展开）
+ *  · Gradle：查看/运行 Gradle 任务树
+ *  · Build Variants：切换 debug / release / 自定义 flavor
+ *  · Structure：当前文件的类/方法/属性大纲，快速跳转
+ *  · Device Manager：管理模拟器（AVD）和已连接真机
+ *  · Version Control（Git）：提交、分支、历史记录
+ *
+ *  ④ 底部工具栏（Tool Windows）
+ *  · Logcat：实时设备日志，支持过滤表达式（package:mine / tag:xxx / level:error）
+ *  · Running Devices（新版）：内嵌模拟器窗口，无需单独开启模拟器窗口
+ *    同时集成 Layout Inspector 入口（Toggle Layout Inspector 按钮）
+ *  · Terminal：内置终端，可执行 adb / git / gradlew 命令
+ *  · Build：构建输出，报错时看这里（含 Warnings / Errors 分类）
+ *  · Run：运行输出（System.out.println 输出在这里）
+ *  · Debug：调试面板（Variables / Frames / Watches / Console）
+ *  · Problems：Lint 警告和错误汇总，双击跳转到问题代码
+ *  · Git：版本控制操作（Commit / Push / Pull / Log）
+ *
+ *  ⑤ 顶部工具栏
+ *  · 运行配置下拉：选择运行的 module 和目标设备
+ *  · ▶ Run（Ctrl+R / Shift+F10）：编译并运行
+ *  · 🐛 Debug（Ctrl+D / Shift+F9）：调试运行
+ *  · ⚡ Apply Changes：热更新代码（不重启 App，仅推送变更的类）
+ *  · ⚡⚡ Apply Changes and Restart Activity：重启当前 Activity
+ *  · 🔨 Build Project（Cmd+F9 / Ctrl+F9）
+ *  · 🔄 Sync Project with Gradle Files：修改 build.gradle 后必须同步
+ *  · AVD Manager / SDK Manager 快捷入口（Tools 菜单也可找到）
+ *  · 账号图标：登录 Google 账号，解锁 Gemini AI 功能
+ *
+ *  ⑥ Gemini in Android Studio（AI 功能，Quail 新增）
+ *  · 入口：右侧工具栏 Gemini 图标，或 Tools → Gemini
+ *  · 功能：代码解释 / 生成单元测试 / 重构建议 / 错误修复建议
+ *  · 需登录 Google 账号并在 Settings → Tools → Gemini 中启用
+ *
+ *
+ * ── 2  项目结构 ───────────────────────────────────────────────────────────────
  *
  *  Android 视图（默认）：
  *  · app/
@@ -29,22 +95,114 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · build.gradle.kts      ← 项目级构建脚本（插件版本）
  *  · gradle/libs.versions.toml ← 版本目录（统一管理依赖版本）
  *
- *  // AndroidManifest.xml 关键节点
- *  <manifest package="com.example.app">
+ *  // AndroidManifest.xml 关键节点详解
+ *
+ *  ① <manifest> 根节点
+ *     · package：应用唯一标识（反向域名，如 com.example.app）
+ *     · xmlns:android：命名空间声明，固定写法
+ *
+ *  ② <uses-permission> 权限声明
+ *     · 普通权限（安装时自动授予）：INTERNET、VIBRATE、RECEIVE_BOOT_COMPLETED
+ *     · 危险权限（运行时需用户授权）：CAMERA、READ_CONTACTS、ACCESS_FINE_LOCATION
+ *     · 特殊权限：SYSTEM_ALERT_WINDOW、WRITE_SETTINGS（需跳转系统设置页）
+ *     · android:maxSdkVersion：限制权限仅在指定 API 以下生效
+ *
+ *  ③ <application> 应用节点
+ *     · android:name：自定义 Application 类（如 ".MyApp"）
+ *     · android:label：应用名称（引用 @string/app_name）
+ *     · android:icon：应用图标（引用 @mipmap/ic_launcher）
+ *     · android:theme：全局主题（引用 @style/Theme.App）
+ *     · android:allowBackup：是否允许 ADB 备份数据（生产建议 false）
+ *     · android:usesCleartextTraffic：是否允许 HTTP 明文流量（Android 9+ 默认禁止）
+ *     · android:networkSecurityConfig：自定义网络安全配置（证书固定等）
+ *
+ *  ④ <activity> 活动节点
+ *     · android:name：Activity 类名（"." 开头表示相对包名）
+ *     · android:exported：是否可被其他应用启动（Android 12+ 有 intent-filter 时必须显式声明）
+ *     · android:launchMode：启动模式（standard / singleTop / singleTask / singleInstance）
+ *     · android:screenOrientation：屏幕方向（portrait / landscape / unspecified）
+ *     · android:configChanges：声明后配置变更不重建 Activity（如 orientation|keyboardHidden）
+ *     · android:windowSoftInputMode：软键盘弹出行为（adjustResize / adjustPan）
+ *     · android:hardwareAccelerated：是否开启硬件加速（默认 true）
+ *
+ *  ⑤ <intent-filter> 意图过滤器
+ *     · <action android:name="android.intent.action.MAIN"/>：标记为应用入口 Activity
+ *     · <category android:name="android.intent.category.LAUNCHER"/>：显示在桌面启动器
+ *     · 隐式 Intent 匹配：action + category + data 三者同时满足才能匹配
+ *     · 自定义 action：<action android:name="com.example.app.OPEN_DETAIL"/>
+ *
+ *  ⑥ 其他常用节点
+ *     · <service>：声明 Service（android:exported / android:foregroundServiceType）
+ *     · <receiver>：声明 BroadcastReceiver（静态注册，Android 8+ 大部分隐式广播不再触发）
+ *     · <provider>：声明 ContentProvider（android:authorities 唯一标识）
+ *     · <uses-feature>：声明硬件特性需求（如 android.hardware.camera）
+ *     · <meta-data>：键值对元数据（常用于 SDK 初始化 API Key）
+ *
+ *  // 完整示例
+ *  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+ *      package="com.example.app">
+ *
+ *      <!-- 权限声明 -->
  *      <uses-permission android:name="android.permission.INTERNET"/>
- *      <application android:label="@string/app_name" ...>
- *          <activity android:name=".MainActivity"
- *              android:exported="true">
+ *      <uses-permission android:name="android.permission.CAMERA"/>
+ *
+ *      <!-- 硬件特性（可选，不强制要求） -->
+ *      <uses-feature android:name="android.hardware.camera" android:required="false"/>
+ *
+ *      <application
+ *          android:name=".MyApplication"
+ *          android:label="@string/app_name"
+ *          android:icon="@mipmap/ic_launcher"
+ *          android:theme="@style/Theme.App"
+ *          android:allowBackup="false"
+ *          android:usesCleartextTraffic="false">
+ *
+ *          <!-- 主 Activity（应用入口） -->
+ *          <activity
+ *              android:name=".MainActivity"
+ *              android:exported="true"
+ *              android:launchMode="singleTask"
+ *              android:windowSoftInputMode="adjustResize">
  *              <intent-filter>
  *                  <action android:name="android.intent.action.MAIN"/>
  *                  <category android:name="android.intent.category.LAUNCHER"/>
  *              </intent-filter>
+ *              <!-- Deep Link 支持 -->
+ *              <intent-filter android:autoVerify="true">
+ *                  <action android:name="android.intent.action.VIEW"/>
+ *                  <category android:name="android.intent.category.DEFAULT"/>
+ *                  <category android:name="android.intent.category.BROWSABLE"/>
+ *                  <data android:scheme="https" android:host="example.com"/>
+ *              </intent-filter>
  *          </activity>
+ *
+ *          <!-- 前台 Service -->
+ *          <service
+ *              android:name=".UploadService"
+ *              android:exported="false"
+ *              android:foregroundServiceType="dataSync"/>
+ *
+ *          <!-- FileProvider（共享文件给其他应用） -->
+ *          <provider
+ *              android:name="androidx.core.content.FileProvider"
+ *              android:authorities="${applicationId}.fileprovider"
+ *              android:exported="false"
+ *              android:grantUriPermissions="true">
+ *              <meta-data
+ *                  android:name="android.support.FILE_PROVIDER_PATHS"
+ *                  android:resource="@xml/file_paths"/>
+ *          </provider>
+ *
+ *          <!-- SDK 初始化 API Key -->
+ *          <meta-data
+ *              android:name="com.google.android.geo.API_KEY"
+ *              android:value="@string/maps_api_key"/>
+ *
  *      </application>
  *  </manifest>
  *
  *
- * ── 2  Logcat ─────────────────────────────────────────────────────────────────
+ * ── 3  Logcat ─────────────────────────────────────────────────────────────────
  *
  *  日志级别（从低到高）：
  *  · VERBOSE(V) → DEBUG(D) → INFO(I) → WARN(W) → ERROR(E)
@@ -72,7 +230,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  Timber.e(exception, "请求失败")
  *
  *
- * ── 3  调试器（Debugger）──────────────────────────────────────────────────────
+ * ── 4  调试器（Debugger）──────────────────────────────────────────────────────
  *
  *  断点类型：
  *  · 行断点（Line Breakpoint）：点击行号左侧，最常用
@@ -98,7 +256,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  // 3. 崩溃时查看 Frames 面板，点击调用栈定位问题
  *
  *
- * ── 4  模拟器 AVD（Android Virtual Device）────────────────────────────────────
+ * ── 5  模拟器 AVD（Android Virtual Device）────────────────────────────────────
  *
  *  创建模拟器：
  *  · Tools → Device Manager → Create Device
@@ -119,46 +277,6 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  // ADB 连接模拟器
  *  adb devices                    // 查看已连接设备
  *  adb -s emulator-5554 shell    // 进入模拟器 shell
- *
- *
- * ── 5  Gradle 构建系统 ────────────────────────────────────────────────────────
- *
- *  核心概念：
- *  · Gradle 是 Android 的构建工具，负责编译、打包、签名、依赖管理
- *  · build.gradle.kts（Kotlin DSL）是主流写法，比 Groovy DSL 有更好的 IDE 支持
- *  · Sync：修改 build.gradle 后必须同步，让 IDE 识别新依赖
- *
- *  模块级 build.gradle.kts 关键配置：
- *  android {
- *      compileSdk = 35          // 编译 SDK 版本
- *      defaultConfig {
- *          minSdk = 24          // 最低支持版本（覆盖 ~97% 设备）
- *          targetSdk = 35       // 目标版本（影响行为兼容性）
- *          versionCode = 1      // 内部版本号（整数，每次发布递增）
- *          versionName = "1.0"  // 用户可见版本号
- *      }
- *      buildTypes {
- *          release {
- *              isMinifyEnabled = true   // 开启 R8 代码压缩混淆
- *              proguardFiles(...)
- *          }
- *      }
- *  }
- *  dependencies {
- *      implementation(libs.androidx.core.ktx)
- *      testImplementation(libs.junit)
- *  }
- *
- *  Build Variants：
- *  · debug：开发调试，包含调试信息，不混淆
- *  · release：发布版本，混淆压缩，需签名
- *  · 可自定义 flavor（如 free/paid、dev/prod）
- *
- *  常用 Gradle 任务：
- *  · assembleDebug：构建 debug APK
- *  · assembleRelease：构建 release APK
- *  · clean：清理构建产物
- *  · test：运行单元测试
  *
  *
  * ── 6  Layout Inspector ───────────────────────────────────────────────────────
@@ -221,78 +339,19 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · Ctrl+R（Mac）/ Shift+F10（Win）：运行
  *  · Ctrl+D（Mac）/ Shift+F9（Win）：调试运行
  *  · Cmd+F2 / Ctrl+F2：停止运行
- *
- *
- * ── 9  ADB 常用命令 ───────────────────────────────────────────────────────────
- *
- *  设备管理：
- *  adb devices                              // 列出已连接设备
- *  adb connect 192.168.1.100:5555          // 无线连接（同一局域网）
- *  adb -s <device_id> <command>            // 指定设备执行命令
- *
- *  应用管理：
- *  adb install app-debug.apk               // 安装 APK
- *  adb install -r app-debug.apk            // 覆盖安装（保留数据）
- *  adb uninstall com.example.app           // 卸载应用
- *  adb shell am start -n com.example/.MainActivity  // 启动 Activity
- *  adb shell am force-stop com.example.app // 强制停止应用
- *
- *  文件操作：
- *  adb push local_file /sdcard/            // 推送文件到设备
- *  adb pull /sdcard/file local_path        // 从设备拉取文件
- *
- *  调试：
- *  adb logcat -s MyTag                     // 过滤 Tag 日志
- *  adb logcat *:E                          // 只看 ERROR 级别
- *  adb shell dumpsys activity              // 查看 Activity 栈
- *  adb shell dumpsys meminfo com.example  // 查看内存使用
- *  adb shell input tap 500 800            // 模拟点击坐标
- *  adb shell input text "hello"           // 输入文字
- *
- *
- * ── 10  常见问题与解决 ────────────────────────────────────────────────────────
- *
- *  Gradle Sync 失败：
- *  · File → Invalidate Caches → Invalidate and Restart（最万能）
- *  · 检查网络，配置国内镜像（阿里云 / 腾讯云 Maven）
- *  · 删除 .gradle 缓存目录：~/.gradle/caches/
- *
- *  模拟器启动慢/卡：
- *  · 确认 HAXM/WHPX 已安装并启用
- *  · 使用 x86_64 镜像而非 ARM
- *  · 减少模拟器 RAM 分配（1.5GB 通常够用）
- *
- *  Build 报错 "Duplicate class"：
- *  · 通常是依赖版本冲突，用 ./gradlew dependencies 查看依赖树
- *  · 在 build.gradle 中用 exclude 排除重复依赖
- *
- *  "65535 method limit" 超出：
- *  · 开启 multiDexEnabled = true
- *  · 或用 R8 混淆裁剪掉未使用的代码
- *
- *  // 配置国内 Maven 镜像（settings.gradle.kts）
- *  dependencyResolutionManagement {
- *      repositories {
- *          maven { url = uri("https://maven.aliyun.com/repository/public") }
- *          google()
- *          mavenCentral()
- *      }
- *  }
  */
 
 private val Green = Color(0xFF4CAF50)
 
 private val chapters = listOf(
-    NoteChapter("1",  "项目结构"),
-    NoteChapter("2",  "Logcat 日志"),
-    NoteChapter("3",  "调试器（Debugger）"),
-    NoteChapter("4",  "模拟器 AVD"),
-    NoteChapter("5",  "Gradle 构建系统"),
-    NoteChapter("6",  "Layout Inspector"),
-    NoteChapter("7",  "APK 分析器"),
-    NoteChapter("8",  "常用快捷键"),
-    NoteChapter("9",  "ADB 常用命令"),
-    NoteChapter("10", "常见问题与解决"),
+    NoteChapter("1", "主界面功能区域"),
+    NoteChapter("2", "项目结构"),
+    NoteChapter("3", "Logcat 日志"),
+    NoteChapter("4", "调试器（Debugger）"),
+    NoteChapter("5", "模拟器 AVD"),
+    NoteChapter("6", "Layout Inspector"),
+    NoteChapter("7", "APK 分析器"),
+    NoteChapter("8", "常用快捷键"),
 )
 
 @Composable
@@ -302,7 +361,7 @@ fun AndroidStudioScreen(
 ) {
     NoteDetailScaffold(
         title = "Android Studio 工具链",
-        subtitle = "项目结构 · 调试 · Gradle · ADB · 快捷键",
+        subtitle = "主界面 · 项目结构 · Logcat · 调试器 · 模拟器 · 快捷键",
         color = Green,
         chapters = chapters,
         onBack = onBack,

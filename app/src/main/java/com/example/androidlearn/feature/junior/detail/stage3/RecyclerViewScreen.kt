@@ -6,10 +6,34 @@ import com.example.androidlearn.feature.shared.NoteChapter
 import com.example.androidlearn.feature.shared.NoteDetailScaffold
 
 /*
- * RecyclerView 笔记
+ * 滚动容器与 RecyclerView 笔记
  * 官方文档：https://developer.android.com/develop/ui/views/layout/recyclerview
  *
- * ── 1  核心组件 ───────────────────────────────────────────────────────────────
+ * ── 1  ScrollView / NestedScrollView ──────────────────────────────────────────
+ *
+ *  · ScrollView：垂直滚动容器，只能有一个直接子 View（通常是 LinearLayout）
+ *  · HorizontalScrollView：水平滚动，同样只能有一个直接子 View
+ *  · NestedScrollView：支持嵌套滚动协议，可与 AppBarLayout / RecyclerView 配合使用
+ *
+ *  【常用属性】
+ *  android:fillViewport            = "true"  内容不足时子 View 撑满 ScrollView 高度（默认 false）
+ *  android:scrollbars              = "vertical|horizontal|none"  滚动条显示方式
+ *  android:scrollbarStyle          = "insideOverlay|outsideOverlay|insideInset|outsideInset"
+ *  android:overScrollMode          = "always|ifContentScrolls|never"  过度滚动效果
+ *  android:requiresFadingEdge      = "vertical|horizontal|none"  边缘渐隐
+ *  android:fadingEdgeLength        渐隐长度（dp）
+ *  android:smoothScrollbar         = "true"  平滑滚动条（默认 true）
+ *
+ *  // 代码控制滚动
+ *  scrollView.smoothScrollTo(0, targetY)       // 平滑滚动到指定位置
+ *  scrollView.scrollTo(0, 0)                   // 立即滚动到顶部
+ *  scrollView.post { scrollView.fullScroll(View.FOCUS_DOWN) }  // 滚动到底部
+ *
+ *  ⚠️ 不要在 ScrollView 内嵌套 RecyclerView（高度冲突，RecyclerView 复用失效）
+ *     → 改用 RecyclerView 的多 ViewType 或 ConcatAdapter 方案
+ *
+ *
+ * ── 2  核心组件 ───────────────────────────────────────────────────────────────
  *
  *  RecyclerView 由四个核心部分组成：
  *  · Adapter：数据与 View 的桥梁，负责创建和绑定 ViewHolder
@@ -23,7 +47,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
  *
  *
- * ── 2  ListAdapter + DiffUtil（推荐）─────────────────────────────────────────
+ * ── 3  ListAdapter + DiffUtil（推荐）─────────────────────────────────────────
  *
  *  · ListAdapter 内置 DiffUtil，异步计算差异，只刷新变化的 Item
  *  · 避免 notifyDataSetChanged() 全量刷新导致的闪烁和性能问题
@@ -61,7 +85,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  adapter.submitList(newList)
  *
  *
- * ── 3  点击事件处理 ───────────────────────────────────────────────────────────
+ * ── 4  点击事件处理 ───────────────────────────────────────────────────────────
  *
  *  // 方式一：在 onCreateViewHolder 中设置（推荐）
  *  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -90,7 +114,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  )
  *
  *
- * ── 4  LayoutManager 布局方式 ─────────────────────────────────────────────────
+ * ── 5  LayoutManager 布局方式 ─────────────────────────────────────────────────
  *
  *  // 线性列表（垂直/水平）
  *  LinearLayoutManager(context)                                    // 垂直
@@ -108,7 +132,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *                               else LinearLayoutManager(context)
  *
  *
- * ── 5  多类型 Item（Multi ViewType）──────────────────────────────────────────
+ * ── 6  多类型 Item（Multi ViewType）──────────────────────────────────────────
  *
  *  // 定义 Item 类型
  *  sealed class FeedItem {
@@ -145,7 +169,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  }
  *
  *
- * ── 6  ItemDecoration 与 ItemAnimator ─────────────────────────────────────────
+ * ── 7  ItemDecoration 与 ItemAnimator ─────────────────────────────────────────
  *
  *  // 系统分割线
  *  recyclerView.addItemDecoration(
@@ -167,7 +191,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  recyclerView.itemAnimator = null
  *
  *
- * ── 7  性能优化 ───────────────────────────────────────────────────────────────
+ * ── 8  性能优化 ───────────────────────────────────────────────────────────────
  *
  *  · setHasFixedSize(true)：Item 尺寸固定时开启，跳过重新测量
  *  · setItemViewCacheSize(n)：增大屏幕外缓存数量，减少 onCreateViewHolder 调用
@@ -184,7 +208,7 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *      .initialPrefetchItemCount = 4
  *
  *
- * ── 8  最佳实践 ───────────────────────────────────────────────────────────────
+ * ── 9  最佳实践 ───────────────────────────────────────────────────────────────
  *
  *  · 优先使用 ListAdapter + DiffUtil，不要用 notifyDataSetChanged()
  *  · 点击事件在 onCreateViewHolder 中设置，不要在 onBindViewHolder（避免重复绑定）
@@ -197,14 +221,15 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
 private val Teal = Color(0xFF009688)
 
 private val chapters = listOf(
-    NoteChapter("1", "核心组件"),
-    NoteChapter("2", "ListAdapter + DiffUtil（推荐）"),
-    NoteChapter("3", "点击事件处理"),
-    NoteChapter("4", "LayoutManager 布局方式"),
-    NoteChapter("5", "多类型 Item（Multi ViewType）"),
-    NoteChapter("6", "ItemDecoration 与 ItemAnimator"),
-    NoteChapter("7", "性能优化"),
-    NoteChapter("8", "最佳实践"),
+    NoteChapter("1", "ScrollView / NestedScrollView：滚动容器"),
+    NoteChapter("2", "核心组件：Adapter / ViewHolder / LayoutManager / ItemDecoration"),
+    NoteChapter("3", "ListAdapter + DiffUtil（推荐）"),
+    NoteChapter("4", "点击事件处理"),
+    NoteChapter("5", "LayoutManager 布局方式"),
+    NoteChapter("6", "多类型 Item（Multi ViewType）"),
+    NoteChapter("7", "ItemDecoration 与 ItemAnimator"),
+    NoteChapter("8", "性能优化"),
+    NoteChapter("9", "最佳实践"),
 )
 
 @Composable
@@ -214,7 +239,7 @@ fun RecyclerViewScreen(
 ) {
     NoteDetailScaffold(
         title = "RecyclerView 高效列表",
-        subtitle = "Adapter · DiffUtil · LayoutManager · 多类型",
+        subtitle = "ScrollView · Adapter · DiffUtil · LayoutManager · 多类型",
         color = Teal,
         chapters = chapters,
         onBack = onBack,

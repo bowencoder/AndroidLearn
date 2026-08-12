@@ -10,15 +10,15 @@ import com.example.androidlearn.feature.junior.detail.stage2.ActivityLifecycleSc
 import com.example.androidlearn.feature.junior.detail.stage2.BroadcastScreen
 import com.example.androidlearn.feature.junior.detail.stage2.ContentProviderScreen
 import com.example.androidlearn.feature.junior.detail.stage2.ServiceScreen
+import com.example.androidlearn.feature.junior.detail.stage3.AndroidArchScreen
 import com.example.androidlearn.feature.junior.detail.stage3.DataStorageScreen
-import com.example.androidlearn.feature.junior.detail.stage3.DialogScreen
 import com.example.androidlearn.feature.junior.detail.stage3.FragmentScreen
-import com.example.androidlearn.feature.junior.detail.stage3.ImageLoadingScreen
 import com.example.androidlearn.feature.junior.detail.stage3.LayoutViewScreen
 import com.example.androidlearn.feature.junior.detail.stage3.MediaBasicsScreen
 import com.example.androidlearn.feature.junior.detail.stage3.NetworkRequestScreen
 import com.example.androidlearn.feature.junior.detail.stage3.PermissionScreen
 import com.example.androidlearn.feature.junior.detail.stage3.RecyclerViewScreen
+import com.example.androidlearn.feature.junior.detail.stage3.ViewScreen
 import com.example.androidlearn.feature.shared.NoteChapter
 
 /**
@@ -32,9 +32,9 @@ import com.example.androidlearn.feature.shared.NoteChapter
  *    0=ActivityLifecycle  1=Service    2=Broadcast  3=ContentProvider
  *
  *  Stage 2（UI 组件与数据基础）→ stage3/:
- *    0=Fragment      1=LayoutView    2=Dialog
- *    3=Permission    4=RecyclerView  5=DataStorage
- *    6=NetworkRequest  7=ImageLoading  8=MediaBasics
+ *    0=AndroidArch   1=LayoutView    2=View          3=Fragment
+ *    4=RecyclerView  5=Permission    6=DataStorage
+ *    7=NetworkRequest  8=MediaBasics
  */
 @Composable
 fun JuniorRouter(
@@ -61,14 +61,14 @@ fun JuniorRouter(
         }
         // ── Stage 2 : UI 组件与数据基础 ───────────────────────
         2 -> when (topicIndex) {
-            0 -> FragmentScreen(onBack, onChapterClick)
+            0 -> AndroidArchScreen(onBack, onChapterClick)
             1 -> LayoutViewScreen(onBack, onChapterClick)
-            2 -> DialogScreen(onBack, onChapterClick)
-            3 -> PermissionScreen(onBack, onChapterClick)
+            2 -> ViewScreen(onBack, onChapterClick)
+            3 -> FragmentScreen(onBack, onChapterClick)
             4 -> RecyclerViewScreen(onBack, onChapterClick)
-            5 -> DataStorageScreen(onBack, onChapterClick)
-            6 -> NetworkRequestScreen(onBack, onChapterClick)
-            7 -> ImageLoadingScreen(onBack, onChapterClick)
+            5 -> PermissionScreen(onBack, onChapterClick)
+            6 -> DataStorageScreen(onBack, onChapterClick)
+            7 -> NetworkRequestScreen(onBack, onChapterClick)
             8 -> MediaBasicsScreen(onBack, onChapterClick)
         }
     }
