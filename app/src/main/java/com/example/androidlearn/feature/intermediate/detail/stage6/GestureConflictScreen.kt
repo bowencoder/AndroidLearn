@@ -9,7 +9,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  * 官方文档：https://developer.android.com/training/gestures/viewgroup
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  1  外部拦截法
+ *  1  外部拦截法  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  * ── 1.1  原理 ─────────────────────────────────────────────────────────────────
@@ -48,7 +48,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  2  内部拦截法
+ *  2  内部拦截法  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  * ── 2.1  原理 ─────────────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  3  NestedScrolling 协议
+ *  3  NestedScrolling 协议  ★ 常用
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · NestedScrollingParent / Child：官方接口，协商滚动量
@@ -84,7 +84,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  4  Compose nestedScroll
+ *  4  Compose nestedScroll  ★ 常用
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · Modifier.nestedScroll + NestedScrollConnection，声明式处理
@@ -99,7 +99,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  5  常见场景
+ *  5  常见场景  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · ViewPager2 内嵌 RecyclerView：VP2 内置 TouchSlop 机制，横向优先消费
@@ -108,7 +108,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  6  最佳实践
+ *  6  最佳实践  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · 外部拦截法更常用，逻辑集中在父 View，不需要修改子 View
@@ -121,15 +121,15 @@ val gestureConflictData = NoteData(
     subtitle = "事件机制与动态编程 · 外部拦截 · 内部拦截 · NestedScrolling",
     color = Color.parseColor("#3F51B5"),
     chapters = listOf(
-        ChapterItem("1",   "外部拦截法"),
+        ChapterItem("1",   "外部拦截法  ★ 必学"),
         ChapterItem("1.1", "原理"),
         ChapterItem("1.2", "代码示例"),
-        ChapterItem("2",   "内部拦截法"),
+        ChapterItem("2",   "内部拦截法  ★ 必学"),
         ChapterItem("2.1", "原理"),
         ChapterItem("2.2", "代码示例"),
-        ChapterItem("3",   "NestedScrolling 协议"),
-        ChapterItem("4",   "Compose nestedScroll"),
-        ChapterItem("5",   "常见场景"),
-        ChapterItem("6",   "最佳实践"),
+        ChapterItem("3",   "NestedScrolling 协议  ★ 常用"),
+        ChapterItem("4",   "Compose nestedScroll  ★ 常用"),
+        ChapterItem("5",   "常见场景  ★ 必学"),
+        ChapterItem("6",   "最佳实践  ★ 必学"),
     )
 )

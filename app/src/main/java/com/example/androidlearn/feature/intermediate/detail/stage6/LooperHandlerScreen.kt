@@ -9,7 +9,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  * 官方文档：https://developer.android.com/reference/android/os/Looper
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  1  核心组件
+ *  1  核心组件  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  * ── 1.1  Looper ───────────────────────────────────────────────────────────────
@@ -30,7 +30,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  2  跨线程通信示例
+ *  2  跨线程通信示例  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  // Handler 跨线程通信
@@ -45,7 +45,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  3  IdleHandler
+ *  3  IdleHandler  ★ 常用
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · 消息队列空闲时执行，适合延迟初始化非关键组件
@@ -59,7 +59,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  4  HandlerThread
+ *  4  HandlerThread  ★ 常用
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · 封装了 Looper 的子线程，适合串行后台任务
@@ -77,7 +77,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  5  Looper.loop() 核心原理
+ *  5  Looper.loop() 核心原理  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  // 简化版
@@ -89,7 +89,7 @@ import com.example.androidlearn.feature.intermediate.detail.NoteData
  *
  *
  * ════════════════════════════════════════════════════════════════════════════
- *  6  最佳实践
+ *  6  最佳实践  ★ 必学
  * ════════════════════════════════════════════════════════════════════════════
  *
  *  · Handler 内部类持有 Activity 引用 → 内存泄漏，改用静态类 + WeakReference
@@ -102,14 +102,14 @@ val looperHandlerData = NoteData(
     subtitle = "事件机制与动态编程 · MessageQueue · epoll · IdleHandler",
     color = Color.parseColor("#3F51B5"),
     chapters = listOf(
-        ChapterItem("1",   "核心组件"),
+        ChapterItem("1",   "核心组件  ★ 必学"),
         ChapterItem("1.1", "Looper"),
         ChapterItem("1.2", "MessageQueue"),
         ChapterItem("1.3", "Handler"),
-        ChapterItem("2",   "跨线程通信示例"),
-        ChapterItem("3",   "IdleHandler"),
-        ChapterItem("4",   "HandlerThread"),
-        ChapterItem("5",   "Looper.loop() 核心原理"),
-        ChapterItem("6",   "最佳实践"),
+        ChapterItem("2",   "跨线程通信示例  ★ 必学"),
+        ChapterItem("3",   "IdleHandler  ★ 常用"),
+        ChapterItem("4",   "HandlerThread  ★ 常用"),
+        ChapterItem("5",   "Looper.loop() 核心原理  ★ 必学"),
+        ChapterItem("6",   "最佳实践  ★ 必学"),
     )
 )

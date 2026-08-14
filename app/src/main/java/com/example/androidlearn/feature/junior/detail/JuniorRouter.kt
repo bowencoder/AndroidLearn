@@ -3,6 +3,7 @@ package com.example.androidlearn.feature.junior.detail
 import androidx.compose.runtime.Composable
 import com.example.androidlearn.feature.junior.detail.stage1.AndroidStudioScreen
 import com.example.androidlearn.feature.junior.detail.stage1.DevToolsScreen
+import com.example.androidlearn.feature.junior.detail.stage1.GenericsScreen
 import com.example.androidlearn.feature.junior.detail.stage1.JavaBasicsScreen
 import com.example.androidlearn.feature.junior.detail.stage1.KotlinSyntaxScreen
 import com.example.androidlearn.feature.junior.detail.stage1.ResourceManagementScreen
@@ -26,7 +27,7 @@ import com.example.androidlearn.feature.shared.NoteChapter
  *
  *  Stage 0（语言与工具基础）→ stage1/:
  *    0=JavaBasics  1=KotlinSyntax  2=AndroidStudio
- *    3=DevTools    4=ResourceManagement
+ *    3=DevTools    4=ResourceManagement  5=Generics
  *
  *  Stage 1（四大组件）→ stage2/:
  *    0=ActivityLifecycle  1=Service    2=Broadcast  3=ContentProvider
@@ -51,6 +52,7 @@ fun JuniorRouter(
             2 -> AndroidStudioScreen(onBack, onChapterClick)
             3 -> DevToolsScreen(onBack, onChapterClick)
             4 -> ResourceManagementScreen(onBack, onChapterClick)
+            5 -> GenericsScreen(onBack, onChapterClick)
         }
         // ── Stage 1 : 四大组件 ────────────────────────────────
         1 -> when (topicIndex) {

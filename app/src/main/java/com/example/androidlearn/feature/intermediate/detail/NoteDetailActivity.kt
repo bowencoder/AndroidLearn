@@ -18,15 +18,8 @@ import com.example.androidlearn.databinding.ActivityNoteDetailBinding
 import com.example.androidlearn.R
 import com.example.androidlearn.feature.intermediate.detail.stage3.coroutinesData
 import com.example.androidlearn.feature.intermediate.detail.stage3.hiltData
-import com.example.androidlearn.feature.intermediate.detail.stage3.jetpackComposeData
 import com.example.androidlearn.feature.intermediate.detail.stage3.mvvmArchData
-import com.example.androidlearn.feature.intermediate.detail.stage3.navigationComponentData
-import com.example.androidlearn.feature.intermediate.detail.stage3.viewModelData
-import com.example.androidlearn.feature.intermediate.detail.stage4.ciCdData
-import com.example.androidlearn.feature.intermediate.detail.stage4.customViewData
 import com.example.androidlearn.feature.intermediate.detail.stage4.modularizationData
-import com.example.androidlearn.feature.intermediate.detail.stage4.performanceData
-import com.example.androidlearn.feature.intermediate.detail.stage4.unitTestData
 import com.example.androidlearn.feature.intermediate.detail.stage4.workManagerData
 import com.example.androidlearn.feature.intermediate.detail.stage5.aidlMultiProcessData
 import com.example.androidlearn.feature.intermediate.detail.stage5.appWidgetData
@@ -39,8 +32,6 @@ import com.example.androidlearn.feature.intermediate.detail.stage6.gestureConfli
 import com.example.androidlearn.feature.intermediate.detail.stage6.looperHandlerData
 import com.example.androidlearn.feature.intermediate.detail.stage6.touchEventData
 import com.example.androidlearn.feature.intermediate.detail.stage6.annotationAptData
-import com.example.androidlearn.feature.intermediate.detail.stage6.dynamicProxyData
-import com.example.androidlearn.feature.intermediate.detail.stage6.genericsData
 import com.example.androidlearn.feature.intermediate.detail.stage6.reflectionData
 
 /**
@@ -98,20 +89,13 @@ class NoteDetailActivity : AppCompatActivity() {
     private fun resolveData(stageIndex: Int, topicIndex: Int): NoteData? = when (stageIndex) {
         3 -> when (topicIndex) {
             0 -> mvvmArchData
-            1 -> viewModelData
-            2 -> coroutinesData
-            3 -> hiltData
-            4 -> jetpackComposeData
-            5 -> navigationComponentData
+            1 -> coroutinesData
+            2 -> hiltData
             else -> null
         }
         4 -> when (topicIndex) {
-            0 -> jetpackComposeData
-            1 -> customViewData
-            2 -> workManagerData
-            3 -> performanceData
-            4 -> unitTestData
-            5 -> modularizationData
+            0 -> workManagerData
+            1 -> modularizationData
             else -> null
         }
         5 -> when (topicIndex) {
@@ -127,10 +111,9 @@ class NoteDetailActivity : AppCompatActivity() {
             0 -> looperHandlerData
             1 -> touchEventData
             2 -> gestureConflictData
-            3 -> genericsData
-            4 -> annotationAptData
-            5 -> reflectionData
-            6 -> dynamicProxyData
+            3 -> annotationAptData
+            4 -> reflectionData
+            5 -> aopData
             else -> null
         }
         else -> null

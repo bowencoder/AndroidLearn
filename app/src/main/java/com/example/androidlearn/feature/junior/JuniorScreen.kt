@@ -61,7 +61,7 @@ val juniorRoadmap = listOf(
     LearningStage(
         index = 0,
         title = "语言与工具基础",
-        subtitle = "Java · Kotlin · Android Studio · Git · Gradle · ADB",
+        subtitle = "Java · Kotlin · Android Studio · Git · Gradle · ADB · 泛型",
         color = Color(0xFF4CAF50),
         topics = listOf(
             LearningTopic("Java 核心基础", "面向对象、集合框架、泛型、IO 流、多线程基础、异常处理"),
@@ -69,6 +69,7 @@ val juniorRoadmap = listOf(
             LearningTopic("Android Studio 工具链", "项目结构、Logcat、调试器、模拟器、布局编辑器、快捷键"),
             LearningTopic("Git / Gradle / ADB", "Git 版本控制基础、Gradle 构建脚本解读、ADB 常用调试命令"),
             LearningTopic("资源管理基础", "strings/colors/dimens 资源、多语言/多屏幕适配、VectorDrawable"),
+            LearningTopic("泛型机制与类型擦除", "类型擦除、PECS 上下边界、reified 内联函数、星号投影、声明处型变"),
         )
     ),
     LearningStage(
@@ -107,29 +108,23 @@ val intermediateRoadmap = listOf(
     LearningStage(
         index = 3,
         title = "现代架构体系",
-        subtitle = "MVVM · ViewModel · 协程 · Flow · Hilt · Compose · Navigation",
+        subtitle = "MVVM · ViewModel · 协程 · Flow · Hilt",
         color = Color(0xFF9C27B0),
         topics = listOf(
-            LearningTopic("MVVM 架构模式", "单向数据流、UiState、Repository 模式、副作用处理"),
-            LearningTopic("ViewModel & StateFlow", "配置变更存活、StateFlow、collectAsStateWithLifecycle"),
+            LearningTopic("MVVM & ViewModel", "MVVM 三层职责、ViewModel 生命周期、StateFlow、UDF、MVP 对比"),
             LearningTopic("Kotlin 协程与 Flow", "suspend、Dispatcher、async/await、Flow、SharedFlow、Channel"),
             LearningTopic("Hilt 依赖注入", "@HiltAndroidApp、@Inject、@Module、Scope 管理、测试替换"),
-            LearningTopic("Jetpack Compose 入门", "@Composable、状态管理、Modifier、Material3 组件体系"),
-            LearningTopic("Navigation Component", "NavHost、路由参数、深链接、底部导航、动画过渡"),
         )
     ),
     LearningStage(
         index = 4,
-        title = "Compose 进阶与工程能力",
-        subtitle = "Compose 进阶 · 自定义 View · WorkManager · Paging · 测试",
+        title = "工程能力进阶",
+        subtitle = "WorkManager · Paging · 模块化",
         color = Color(0xFFFF9800),
         topics = listOf(
-            LearningTopic("Jetpack Compose 进阶", "自定义布局、Canvas 绘制、动画 API、与 View 互操作、性能优化"),
-            LearningTopic("自定义 View 与动画", "onDraw/onMeasure、属性动画、插值器估值器、Lottie"),
             LearningTopic("WorkManager 后台调度", "CoroutineWorker、约束条件、链式任务、进度上报、周期任务"),
             LearningTopic("Paging 3 分页加载", "PagingSource、RemoteMediator、LoadState、LazyPagingItems"),
-            LearningTopic("单元测试与 UI 测试", "JUnit、MockK、Turbine、ViewModel 测试、Compose UI 测试"),
-            LearningTopic("数据层架构进阶", "Room 复杂查询/Relations/Migration、Repository 最佳实践"),
+            LearningTopic("模块化架构", "多模块拆分、依赖管理、动态特性模块、模块间通信"),
         )
     ),
     LearningStage(
@@ -149,15 +144,15 @@ val intermediateRoadmap = listOf(
     LearningStage(
         index = 6,
         title = "事件机制与动态编程",
-        subtitle = "Handler · 事件分发 · 泛型 · 注解 · 反射 · 动态代理",
+        subtitle = "Handler · 事件分发 · 注解 · 反射 · AOP",
         color = Color(0xFF3F51B5),
         topics = listOf(
             LearningTopic("Looper / Handler 消息机制", "MessageQueue、epoll、IdleHandler、主线程消息循环、内存泄漏"),
             LearningTopic("触摸事件分发机制", "dispatch/intercept/onTouchEvent 三级传递、ACTION 序列、优先级"),
             LearningTopic("手势冲突解决方案", "外部拦截法、内部拦截法、NestedScrolling、Compose nestedScroll"),
-            LearningTopic("泛型机制与类型擦除", "泛型擦除、桥方法、PECS 上下边界、Kotlin reified 内联函数"),
             LearningTopic("注解与 APT", "自定义注解、注解处理器、KSP、ButterKnife/Retrofit 注解原理"),
             LearningTopic("反射与动态代理", "Class/Field/Method API、JDK 动态代理、Proxy/InvocationHandler"),
+            LearningTopic("AOP 面向切面编程", "AspectJ、ASM 字节码插桩、动态代理、CGLIB、Kotlin 委托、方案选型"),
         )
     )
 )
