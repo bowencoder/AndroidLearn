@@ -1,0 +1,39 @@
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/EventBusScreen.kt
+  s_28a840f1706ca4::t_8898ef6e471017 1-196
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage3/ThreadConcurrencyScreen.kt
+  s_8d5888801f487f::t_29ab17ab0fa7b9 1-356
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/stage4/RxJavaScreen.kt
+  s_28a840f1706ca4::t_43406d2c4aa746 1-239
+app/src/main/java/com/example/androidlearn/feature/junior/JuniorScreen.kt
+  s_8d5888801f487f::t_d1057e09b5aa07 117
+  s_28a840f1706ca4::t_7e30586176d35e 129-130
+app/src/main/java/com/example/androidlearn/feature/intermediate/detail/NoteDetailActivity.kt
+  s_8d5888801f487f::t_7d02d5fb0d70bd 97
+  s_8d5888801f487f::t_13c00c433860f4 22
+  s_28a840f1706ca4::t_a1bb0d0e014a61 23,25
+  s_28a840f1706ca4::t_df78dd7ac182a3 103-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "aab407c615f28e242986deaa83d2c41f883ff156",
+  "prompts": {},
+  "sessions": {
+    "s_28a840f1706ca4": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "b00e764c-a1ad-4eb7-a6fb-09c7ec760aee",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_8d5888801f487f": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "f1d0ddea-09e1-4c1e-bd1d-22d3e574f335",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
