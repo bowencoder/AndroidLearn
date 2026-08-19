@@ -1,0 +1,30 @@
+app/src/main/java/com/example/androidlearn/feature/junior/detail/stage1/AndroidStudioScreen.kt
+  s_df7d5f56d82e81::t_b4ac6f0569ea50 344-353,357,359-361,363,365-366,370,372-377,382,387,389-393
+  s_df7d5f56d82e81::t_39d93dee8be943 407-411
+  s_6563896e1df138::t_b5a2a9fd1aca29 342-343,354-356,358,362,364,367-369,371,378-381,383-386,388
+  s_6563896e1df138::t_599dc12d139c49 421
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "181efee25a8aee5871e7ea9355dcf4713e43663c",
+  "prompts": {},
+  "sessions": {
+    "s_6563896e1df138": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "263b1746-c3f6-41bd-ae7c-871eedf544b6",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    },
+    "s_df7d5f56d82e81": {
+      "agent_id": {
+        "tool": "codewiz",
+        "id": "f4f1a475-1a9b-4e13-b08e-cdb28760f7e6",
+        "model": "claude-4.6-sonnet-google"
+      },
+      "human_author": "正北飞 <1214569257@qq.com>"
+    }
+  }
+}
