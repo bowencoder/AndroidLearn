@@ -339,6 +339,58 @@ import com.example.androidlearn.feature.shared.NoteDetailScaffold
  *  · Ctrl+R（Mac）/ Shift+F10（Win）：运行
  *  · Ctrl+D（Mac）/ Shift+F9（Win）：调试运行
  *  · Cmd+F2 / Ctrl+F2：停止运行
+ *
+ *
+ * ── 9  工程的兼容性问题（新手常见）──────────────────────────────────────
+ *
+ * ── 9.1  Gradle / AGP 版本不匹配 ─────────────────────────────────────────────
+ *
+ *  · 现象：Sync 失败，报 "Gradle version X.X is required"
+ *  · 原因：工程要求的 Gradle / AGP 版本与当前 Android Studio 不兼容
+ *  · 解决：点击 Sync 失败提示中的 "Upgrade" 按钮，或手动修改：
+ *    - gradle/wrapper/gradle-wrapper.properties → distributionUrl 改为新版本
+ *    - gradle/libs.versions.toml → agp = "8.x.x"
+ *  · 版本对照：AGP 8.x ↔ Gradle 8.x ↔ Android Studio Koala+
+ *    完整对照表：https://developer.android.com/build/releases/gradle-plugin
+ *
+ *
+ * ── 9.2  SDK 未安装（compileSdk 缺失）────────────────────────────────────────
+ *
+ *  · 现象：报 "Failed to find target with hash string 'android-XX'"
+ *  · 原因：工程要求的 API Level 在本机 SDK Manager 中未安装
+ *  · 解决：Tools → SDK Manager → 勾选对应 API Level → Apply
+ *
+ *  // build.gradle.kts 中的版本声明
+ *  android {
+ *      compileSdk = 35      // 需要安装 API 35
+ *      defaultConfig { minSdk = 24; targetSdk = 35 }
+ *  }
+ *
+ *
+ * ── 9.3  依赖下载失败（国内网络）─────────────────────────────────────────────
+ *
+ *  · 现象：Sync 卡住或报 "Could not resolve xxx:xxx:xxx" / "Read timed out"
+ *  · 原因：Google / Maven Central 仓库在国内访问受限
+ *  · 解决：
+ *    ① 开启 VPN，或在 Android Studio 中配置 HTTP 代理：
+ *       File → Settings → Appearance & Behavior → System Settings → HTTP Proxy
+ *    ② 配置阿里云镜像（settings.gradle.kts）：
+ *       dependencyResolutionManagement {
+ *           repositories {
+ *               maven { url = uri("https://maven.aliyun.com/repository/google") }
+ *               maven { url = uri("https://maven.aliyun.com/repository/central") }
+ *               google(); mavenCentral()
+ *           }
+ *       }
+ *
+ *
+ * ── 9.4  JDK 版本不匹配 ───────────────────────────────────────────────────────
+ *
+ *  · 现象：报 "Unsupported class file major version XX"
+ *  · 原因：Gradle 使用的 JDK 版本与工程要求不一致
+ *  · 解决：File → Settings → Build → Gradle → Gradle JDK
+ *          选择 "Embedded JDK"（Android Studio 内置，最省事）
+ *  · 规则：AGP 8.0+ 要求 JDK 17；AGP 7.x 要求 JDK 11
  */
 
 private val Green = Color(0xFF4CAF50)
@@ -352,6 +404,11 @@ private val chapters = listOf(
     NoteChapter("6", "Layout Inspector"),
     NoteChapter("7", "APK 分析器"),
     NoteChapter("8", "常用快捷键"),
+    NoteChapter("9",   "打开工程的兼容性问题（新手常见）"),
+    NoteChapter("9.1", "Gradle / AGP 版本不匹配：点击 Upgrade 或手动改版本号"),
+    NoteChapter("9.2", "SDK 未安装：SDK Manager 安装对应 API Level"),
+    NoteChapter("9.3", "依赖下载失败：VPN / 代理 / 阿里云镜像"),
+    NoteChapter("9.4", "JDK 版本不匹配：切换为 Embedded JDK"),
 )
 
 @Composable
@@ -361,7 +418,7 @@ fun AndroidStudioScreen(
 ) {
     NoteDetailScaffold(
         title = "Android Studio 工具链",
-        subtitle = "主界面 · 项目结构 · Logcat · 调试器 · 模拟器 · 快捷键",
+        subtitle = "主界面 · 项目结构 · Logcat · 调试器 · 模拟器 · 快捷键 · 兼容性问题",
         color = Green,
         chapters = chapters,
         onBack = onBack,
