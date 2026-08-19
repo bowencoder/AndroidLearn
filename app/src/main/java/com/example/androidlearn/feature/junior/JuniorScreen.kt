@@ -114,6 +114,7 @@ val intermediateRoadmap = listOf(
             LearningTopic("MVVM & ViewModel", "MVVM 三层职责、ViewModel 生命周期、StateFlow、UDF、MVP 对比"),
             LearningTopic("Kotlin 协程与 Flow", "suspend、Dispatcher、async/await、Flow、SharedFlow、Channel"),
             LearningTopic("Hilt 依赖注入", "@HiltAndroidApp、@Inject、@Module、Scope 管理、测试替换"),
+            LearningTopic("多线程与并发", "Thread、synchronized、volatile、线程池、原子类、并发集合、线程切换"),
         )
     ),
     LearningStage(
@@ -125,6 +126,8 @@ val intermediateRoadmap = listOf(
             LearningTopic("WorkManager 后台调度", "CoroutineWorker、约束条件、链式任务、进度上报、周期任务"),
             LearningTopic("Paging 3 分页加载", "PagingSource、RemoteMediator、LoadState、LazyPagingItems"),
             LearningTopic("模块化架构", "多模块拆分、依赖管理、动态特性模块、模块间通信"),
+            LearningTopic("RxJava 响应式编程", "Observable/Single/Flowable、调度器、map/flatMap/zip、CompositeDisposable"),
+            LearningTopic("EventBus 事件总线", "发布订阅、ThreadMode、粘性事件、优先级、APT 索引加速"),
         )
     ),
     LearningStage(

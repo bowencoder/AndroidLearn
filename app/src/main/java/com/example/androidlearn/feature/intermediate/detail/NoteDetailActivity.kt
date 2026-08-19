@@ -19,7 +19,10 @@ import com.example.androidlearn.R
 import com.example.androidlearn.feature.intermediate.detail.stage3.coroutinesData
 import com.example.androidlearn.feature.intermediate.detail.stage3.hiltData
 import com.example.androidlearn.feature.intermediate.detail.stage3.mvvmArchData
+import com.example.androidlearn.feature.intermediate.detail.stage3.threadConcurrencyData
+import com.example.androidlearn.feature.intermediate.detail.stage4.eventBusData
 import com.example.androidlearn.feature.intermediate.detail.stage4.modularizationData
+import com.example.androidlearn.feature.intermediate.detail.stage4.rxJavaData
 import com.example.androidlearn.feature.intermediate.detail.stage4.workManagerData
 import com.example.androidlearn.feature.intermediate.detail.stage5.aidlMultiProcessData
 import com.example.androidlearn.feature.intermediate.detail.stage5.appWidgetData
@@ -91,11 +94,14 @@ class NoteDetailActivity : AppCompatActivity() {
             0 -> mvvmArchData
             1 -> coroutinesData
             2 -> hiltData
+            3 -> threadConcurrencyData
             else -> null
         }
         4 -> when (topicIndex) {
             0 -> workManagerData
             1 -> modularizationData
+            2 -> rxJavaData
+            3 -> eventBusData
             else -> null
         }
         5 -> when (topicIndex) {
